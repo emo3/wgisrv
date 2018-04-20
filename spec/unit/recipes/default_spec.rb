@@ -2,7 +2,7 @@
 # Cookbook:: wgisrv
 # Spec:: default
 #
-# Copyright:: 2018, The Authors, All Rights Reserved.
+# Copyright:: 2018, Ed Overton, All Rights Reserved.
 
 require 'spec_helper'
 
