@@ -1,11 +1,11 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: <%= ENV['GS'] %>
+  # vm_hostname: <%= ENV['GS'] %>
   customize:
     memory: <%= ENV['GSR'] %>
     cpus: <%= ENV['GSC'] %>
-    name: <%= ENV['GS'] %>
+    # name: <%= ENV['GS'] %>
   network:
    - ['private_network', ip: <%= ENV['GSP'] %>]
 
