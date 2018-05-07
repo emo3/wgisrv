@@ -49,7 +49,7 @@ depends 'wgisrv'
 Then, in a recipe:
 
 ```
-include_recipe 'wgisrv::make_ncg81'
+include_recipe 'wgisrv::make_nc_wg'
 ```
 
 If your cookbook provides resources, be sure to include examples of how to use

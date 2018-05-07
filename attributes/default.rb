@@ -1,0 +1,30 @@
+default['wgisrv']['cots_dir']    = '/sfcots'
+default['wgisrv']['app_dir']     = "#{node['wgisrv']['cots_dir']}/apps"
+default['wgisrv']['ng_dir']      = "#{node['wgisrv']['app_dir']}/netcool"
+default['wgisrv']['in_dir']      = "#{node['wgisrv']['app_dir']}/install"
+default['wgisrv']['temp_dir']    = '/tmp'
+default['wgisrv']['media_url']   = 'http://10.1.1.30/media'
+# default['wgisrv']['rhel']        = %w(bc ntp firefox compat-libstdc++-33.i686)
+default['wgisrv']['rhel']        = %w(bc ntp firefox compat-libstdc++-33.i686 libXtst.i686 compat-libstdc++-33 compat-db libXp libXmu libXtst pam libXft gtk2 xauth motif)
+default['wgisrv']['nc_act']      = 'netcool'
+default['wgisrv']['nc_grp']      = 'ncoadmin'
+default['wgisrv']['root_pwd']    = 'nc0Adm1n'
+default['wgisrv']['pa_epwd']     = '@44:GlEwL3cFaU+Pfjcm5S7xNs00PubYXnWhTqEVDtgvUjo=@'
+default['wgisrv']['encryption']  = 'AES'
+default['wgisrv']['os_pa_name']  = 'NCO_PA'
+default['wgisrv']['ps_pa_name']  = 'NCP_PA'
+default['wgisrv']['ncoms']       = 'NCO'
+default['wgisrv']['p-ncoms']     = 'P_NCO'
+default['wgisrv']['b-ncoms']     = 'B_NCO'
+default['wgisrv']['bi-name']     = 'BI_GATE'
+default['wgisrv']['remedy']      = 'REMEDY_GATE'
+default['wgisrv']['rdy_dir']     = "#{node['wgisrv']['ob_dir']}/etc/#{node['wgisrv']['remedy']}"
+default['wgisrv']['tdw']         = 'TDW_GATE'
+default['wgisrv']['os_port']     = '4100'
+default['wgisrv']['pa_port']     = '4200'
+default['wgisrv']['bi_port']     = '4300'
+default['wgisrv']['remedy_port'] = '4301'
+default['wgisrv']['tdw_port']    = '4302'
+# Taken from environmental variables via .kitchen.yml
+default['PAP']                   = ''
+default['PA']                    = ''

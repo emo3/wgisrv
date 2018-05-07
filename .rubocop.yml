@@ -1,0 +1,15 @@
+AllCops:
+  Include:
+    - Berksfile
+    - Gemfile
+    - Rakefile
+    - Thorfile
+    - Guardfile
+  Exclude:
+    - vendor/**/*
+
+Documentation:
+  Enabled: false
+
+Style/GlobalVars:
+  AllowedVariables: [$access_token]
