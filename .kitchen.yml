@@ -31,3 +31,4 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      GS: <%= ENV['GS'] %>
