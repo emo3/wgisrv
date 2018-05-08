@@ -1,11 +1,11 @@
 <agent-input>
   <variables>
-    <variable name='sharedLocation' value='<%= node['wgisrv']['app_dir'] %>/IMShared'/>
+    <variable name='sharedLocation' value='<%= node['wgisrv']['shr_dir'] %>'/>
     <!-- Installation location for: -->
     <!--   IBM WebSphere Application Server -->
     <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
     <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
-    <variable name='installLocation' value='<%= node['wgisrv']['app_dir'] %>/WebSphere/AppServer'/>
+    <variable name='installLocation' value='<%= node['wgisrv']['was_dir'] %>'/>
   </variables>
   <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
   <server>
