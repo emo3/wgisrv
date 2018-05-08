@@ -2,6 +2,7 @@ default['wgisrv']['cots_dir']  = '/sfcots'
 default['wgisrv']['app_dir']   = "#{node['wgisrv']['cots_dir']}/apps"
 default['wgisrv']['ng_dir']    = "#{node['wgisrv']['app_dir']}/netcool"
 default['wgisrv']['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
+default['wgisrv']['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
 default['wgisrv']['temp_dir']  = '/tmp'
 default['wgisrv']['media_url'] = 'http://10.1.1.30/media'
 default['wgisrv']['nc_act']    = 'netcool'

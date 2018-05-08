@@ -63,21 +63,21 @@ filelist.each do |_fn, fv|
   end
 end
 
-# create silent install file for WebGUI packages
-template "#{node['wgisrv']['temp_dir']}/wg.xml" do
-  source 'wg.xml.erb'
-  sensitive true
+# create silent install file for WebGUI was packages
+template "#{node['wgisrv']['temp_dir']}/was.xml" do
+  source 'was.xml.erb'
+  not_if { File.exist?("#{node['wgisrv']['was_dir']}/startServer.sh") }
   mode 0444
 end
 
-# Install WebGUI
-execute "install_wg" do
+# Install was + fp + java 8
+execute 'install_was' do
   command "#{node['wgisrv']['app_dir']}/InstallationManager/eclipse/tools/imcl \
-  input #{node['wgisrv']['temp_dir']}/wg.xml \
-  -log #{node['wgisrv']['temp_dir']}/wg_log.xml \
+  input #{node['wgisrv']['temp_dir']}/was.xml \
+  -log #{node['wgisrv']['temp_dir']}/was_log.xml \
   -acceptlicense"
   cwd "#{node['wgisrv']['app_dir']}/InstallationManager/eclipse/tools"
-  # not_if { File.exist?("#{fv['ipath']}/#{fv['ifile']}") }
+  not_if { File.exist?("#{node['wgisrv']['was_dir']}/startServer.sh") }
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   umask '022'
@@ -85,6 +85,6 @@ execute "install_wg" do
 end
 
 # remove silent install file
-file "#{node['wgisrv']['temp_dir']}/wg.xml" do
-  action :nothing
+file "#{node['wgisrv']['temp_dir']}/was.xml" do
+  action :delete
 end
