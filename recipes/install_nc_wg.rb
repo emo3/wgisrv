@@ -23,5 +23,5 @@ end
 
 # remove silent install file
 file "#{node['wgisrv']['temp_dir']}/wg.xml" do
-  action :delete
+  action :nothing
 end
