@@ -8,11 +8,9 @@ end
 
 # Configure files
 execute 'config_wg' do
-  command "#{node['wgisrv']['jaz_dir']}/profile/bin/PropFilePasswordEncoder.sh \
-  #{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props \
-  com.ibm.loginPassword"
-  cwd "#{node['wgisrv']['jaz_dir']}/profile/bin"
+  command "#{node['wgisrv']['jaz_dir']}/profile/bin/was_ant.sh configureOS"
+  cwd "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  action :nothing
+  action :run
 end

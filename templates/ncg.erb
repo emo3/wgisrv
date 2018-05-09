@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+# Simple startup script for IBM WebSphere Application Server
+#
+# chkconfig: 35 85 15
+# description: IBM WebSphere Application Server is a powerful \
+# middleware platform for connecting Web-based applications and \
+# servers.
+
+# Path to the WebSphere startup and shutdown scripts
+startscript=<%= node['wgisrv']['was_dir'] %>/bin/startServer.sh
+shutscript=<%= node['wgisrv']['was_dir'] %>/bin/stopServer.sh
+prog="the WebSphere Application Server"
+RETVAL=0
+
+# modify the following line as needed to reflect any custom Java
+# installation directory
+## Added to /etc/profile.d/java.sh
+# PATH=/tivoli/apps/ibm-java-x86_64_60/bin:$PATH
+
+# Function to start the server
+start() {
+  echo -n $"Starting $prog: "
+  $startscript server1 -quiet
+  RETVAL=$?
+  echo
+  return $RETVAL
+}
+
+# Function to stop the server
+stop() {
+  echo -n $"Stopping $prog: "
+# Soap is on, so no passwords needed
+#  $shutscript server1 -username ADMINUSER -password PASSWORD
+  $shutscript server1 -quiet
+  RETVAL=$?
+  echo
+  return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    stop
+    start
+    ;;
+*)
+  echo $"Usage: $0 {start|stop|restart}"
+  exit 1
+esac
+
+exit $RETVAL
