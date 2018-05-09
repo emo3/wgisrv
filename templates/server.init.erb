@@ -1,0 +1,1171 @@
+############################################################
+#
+# Tivoli Netcool/OMNIbus Web GUI Server Configuration File
+# ========================================================
+#
+#
+############################################################
+#
+# Properties relating to the Web GUI server's connection to
+# the Object Server (OS) are now configured in the following files:
+#
+# <OMNIBUS_WEBGUI_PRODUCT_HOME>/etc/datasources/ncwDataSourceDefinitions.xml
+# where <OMNIBUS_WEBGUI_PRODUCT_HOME> denotes OMNIbus Web GUI product home installed directory
+#
+############################################################
+
+############################################################
+#
+# Logging Properties
+#
+############################################################
+#
+# log.directory - base directory where log, trace and profile files are stored, prepended with %TIP_HOME%/profiles/TIPProfile
+# log.filename - log filename pattern
+# log.level - one of: ALL, FINEST, FINER, PROFILE, FINE, CONFIG, INFO, AUDIT, WARNING, SEVERE, OFF
+# log.maxsize - maximum size of the log file in MB, once reached, file is renamed and kept as a backup
+# log.count - number of backup log files to keep
+#
+log.directory=/logs/ncw
+log.level=INFO
+log.filename=ncw.%g.log
+log.maxsize=10
+log.count=5
+
+############################################################
+#
+# Trace & Profile Properties
+# These settings control the trace and profile log files. A profile log is not created unless the trace level
+# is set to PROFILE, FINER, FINEST or ALL.
+#
+############################################################
+#
+# trace.level - one of: ALL, FINEST, FINER, PROFILE, FINE, CONFIG, INFO, AUDIT, WARNING, SEVERE, OFF
+# trace.filename - trace filename pattern
+# trace.maxsize - maximum size of the trace file in MB, once reached, file is renamed and kept as a backup
+# trace.count - number of backup trace files to keep
+# profile.filename - profile filename pattern
+# profile.maxsize - maximum size of the profile file in MB, once reached, file is renamed and kept as a backup
+# profile.count - number of backup profile files to keep
+# profilereport.startdelay - time before first profile report is generated in seconds
+# profilereport.runperiod - time between profile reports in seconds
+#
+trace.level=PROFILE
+trace.filename=ncw.%g.trace
+trace.maxsize=10
+trace.count=5
+profile.filename=ncw.%g.profile
+profile.maxsize=10
+profile.count=5
+profilereport.startdelay=120
+profilereport.runperiod=60
+
+############################################################
+#
+# Optional parameters to pass to table views for the
+# table rendering
+#
+############################################################
+tableviewparams: border="0" cellpadding="1" cellspacing="1" width="100%"
+tableview.pixelmultiply: 10
+
+############################################################
+#
+# Properties for performance tuning
+#
+############################################################
+#
+# maxtablesize: <number of rows allowed>
+#
+# uploadfile.maxsize: Size of file uploaded by PageManager.
+#			The value is provided in Megabytes
+#
+#maxtablesize: 200
+uploadfile.maxsize=5
+
+############################################################
+#
+# Internationalisation resources
+#
+# internationalisation.cache.enabled:<true or false>
+# Specifies whether server should cache language resources in memory.
+# Default value is "true".
+#
+
+internationalisation.cache.enabled:true
+
+############################################################
+#
+# Active Event List properties
+#
+# ael.top-n.value:
+# This property allows a limit on the number of
+# alerts returned to the AEL to be imposed.
+# If this property is set to a value greater than 0, AEL
+# queries are modified to include a TOP condition.
+#
+# Notes:
+# A value of 0 will be ignored and will NOT result in the AEL
+# showing 0 rows. (All matching events will be displayed).
+# The recommended maximum limit is 20000 events in a single AEL.
+# Default value is -1
+#
+# ael.top-n.mode:
+# Specifies the top-n mode. If set to 1, StateChange will be appended to AEL
+# SQL event update requests.
+# If set to 0, StateChange will not be appended to AEL requests.
+# Default value is 0
+#
+# ael.top-n.refresh:<type of refresh>
+# If set to 1:
+# The AEL is only updated with new and updated rows from the ObjectServer.
+# StateChange is enforced to be greater than 0.
+# The running of SQL Tools and the checks for discrepancy between the AEL and the ObjectServer do not reset StateChange to 0.
+# If set to 0:
+# If the number of rows in the AEL and the number of rows in the ObjectServer do not match,
+# then the AEL is refreshed with data from the ObjectServer up to the number of rows specified in the ael.top-n.value property, and StateChange is reset to 0.
+# The running of SQL Tools resets StateChange to 0.
+# Default value:0
+#
+############################################################
+
+ael.top-n.value:-1
+ael.top-n.mode:0
+ael.top-n.refresh:0
+
+############################################################
+#
+# AELView Queries
+#
+############################################################
+#
+# aelview.queries.enabled:<true or false>
+# 	Allows advanced queries to be made against the AELView servlet
+# 	Default value is "true"
+#
+# 	eg) http://myserver:port/ibm/console/webtop/AELView?filter="Severity>3"&view="basic"&width=100%&height=100%&TransientName="MyDynamicEntity"
+
+aelview.queries.enabled:true
+
+################################################################################
+#
+# Properties which specify the version of the Java Plug-in that must be
+# installed on the client web browser.
+#
+# plugin.enabled:
+# Specifies whether the Java plugin can be used at all in WebGUI.
+# The default value is true. If set to false, a message will appear in places
+# that were previously occupied by applets.
+#
+# plugin.classid:
+# Specifies the version of the Java plugin via the classid attribute of the
+# OBJECT tag used for Internet Explorer on Windows.
+# default value is "clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+#
+# plugin.iedownload:
+# Specifies the full URL pointing to a .cab file somewhere on the network
+# from which the Plug-in can be installed if the appropriate version is not
+# already installed. This is used in the OBJECT tag for Internet Explorer on Windows.
+# default value is "https://java.sun.com/update/1.7.0/jinstall-7u45-windows-i586.cab"
+#
+# plugin.type:
+# Specifies the version of the java plugin via the type attribute of the
+# EMBED tag for the Mozilla family of browsers.
+# default value is "application/x-java-applet;version=1.7"
+#
+# plugin.page:
+# Specifies the full URL pointing to a web page from which the Java Plug-in
+# can be downloaded if the appropriate version is not already installed. This
+# is used in the EMBED tag for the Mozilla family of browsers.
+# default value is "https://java.com/en/download/index.jsp"
+#
+# plugin.separatejvm:
+# Specifies the applets should run in its own JVM instance. This helps when
+# applets having interference problem from other applets running in the same
+# JVM and when applets require dedicated heap memory.
+# Note 1: This property only effective on JRE 6u10 onward
+# Note 2: Turn on the property will cause the applets running on same client
+# machine to lost their singularity characteristic. Hence, the behavior will
+# similar with running the applets on different clients machines.
+# default value is "false"
+#
+# applet.prompt.enabled:
+# Specifies whether the prompt applet used by the Filter Builder and View Builder
+# to notify the Active Event List and Event Dashboard applets is enabled.
+# The default value is true. If set to false, no notification is sent to the
+# Active Event List and Event Dashboard when filters and views are modified. Instead,
+# these components will automatically detect the changed configuration when they next
+# synchronize with the server. This may take up to the configured refresh period. This
+# setting is ignored if plugin.enabled is set to false. In this scenario all applets
+# are disabled.
+#
+# For more information, see
+# http://www.oracle.com/technetwork/java/versions-139994.html
+# http://docs.oracle.com/javase/7/docs/technotes/guides/plugin/developer_guide/using_tags.html
+#
+################################################################################
+
+plugin.enabled: false
+plugin.classid:clsid:8AD9C840-044E-11D1-B3E9-00805F499D93
+plugin.iedownload=https://java.sun.com/update/1.7.0/jinstall-7u45-windows-i586.cab
+plugin.type:application/x-java-applet;version=1.7
+plugin.page:https://java.com/en/download/index.jsp
+plugin.separatejvm:false
+applet.prompt.enabled:false
+
+############################################################
+#
+# Light Weight Sub Event List properties
+#
+############################################################
+
+lel.pagesize.default:500
+
+############################################################
+#
+# Maplet-related properties
+#
+# maplet.plugin.classic:
+# Specifies HTML markup for embedding maplets.
+# If true, the maplet is embedded with the <APPLET> tag.
+# If false, the maplet is embedded with the  <OBJECT><EMBED> tag
+# Default value:false
+#
+# maplet.refresh:
+# Specifies the time interval (in seconds) between maplet refreshes.
+# It is recommended that this value be 10 or greater, and it must be an integer.
+# Default value:10
+#
+# maplet.noeventcolor:
+# Specifies the color of active elements that have no associated events. Specify a
+# hexadecimal color value for this parameter, for example 0xDDDDDD for gray,
+# or 0xFFFFFF for white.
+# If no value is specified, the color associated with severity 0 is used.
+# Default value: None
+#
+# watchlists.map.enablecustomization:
+# Enable or disable the customisation of dynamic watch list maps from the
+# map portlet preferences.
+#
+# map.render.mode:
+# Specifies the render mode for maps in portlets or SmartPage pages. Possible
+# options are "applet" to use the Java applet and "lightweight" to use the
+# lightweight render option. Note that if the plugin.enabled property is set
+# to false, then this option is ignored and all maps are rendered in
+# lightweight mode
+# Default value:applet
+#
+# map.editor.mode:
+# Specifies the Map Editor mode. Possible options are "applet" to use the Java
+# applet and "webstart" to launch the Map Editor outside the portlets. Note that
+# if the plugin.enabled property is set to false, then this option is ignored and
+# the Map Editor is launched via Java Webstart
+# Default value:applet
+#
+############################################################
+
+maplet.plugin.classic:false
+maplet.refresh:10
+#maplet.noeventcolor:0xDDDDDD
+watchlists.map.enablecustomization:false
+map.render.mode:lightweight
+map.editor.mode:applet
+
+############################################################
+#
+# Rendering of HTML in Tableview fields
+#
+# tableview.escapehtml:
+#
+# Prevents rendering of HTML script in Tableview fields.
+# If true, HTML script text in Tableview fields is treated as simple text.
+# If false, HTML script text in Tableview fields is rendered.
+# Default value:false
+#
+############################################################
+
+tableview.escapehtml:false
+
+############################################################
+#
+# User Authentication System Integration Settings
+#
+# users.reload.mode: [0|1]
+#
+# The algorithm that is used to request a list of the Web GUI users from the user
+# authentication system.
+# 0: All users are requested.
+# 1: Strict. Only users with ncw_* are requested.
+# Default value:1.
+#
+############################################################
+
+users.reload.mode:1
+
+############################################################
+#
+# Group Authentication System Integration Settings
+#
+# groups.reload.mode: [0|1]
+#
+# The algorithm that is used to request a list of the Web GUI groups from the
+# authentication system.
+# 0: All groups are requested.
+# 1: Strict. Only groups with ncw_* are requested.
+# Default value:1.
+#
+############################################################
+
+groups.reload.mode:1
+
+############################################################
+#
+# Automatic user credentials synchronisation between VMM and ObjectServer.
+#
+# users.credentials.sync: [false|true]
+#
+# false: user credentials synchronisation is disabled.
+# true: user credentials synchronisation is enabled.
+# Default value: false, unless no ObjectServer installed as user repository.
+#
+############################################################
+
+users.credentials.sync:false
+
+############################################################
+#
+# This property specifies the group name that is used in the ObjectServer,
+# if automatic user credentials synchronisation between VMM and the ObjectServer
+# is enabled. All synchronised users are members of this group.
+#
+# Default value: vmmusers
+#
+############################################################
+
+users.credentials.sync.groupname:vmmusers
+
+############################################################
+#
+# webtop.password.encryption: < none | aes | fips >
+# Indicates that passwords in server.init are encrypted.
+#
+# AES:
+# The password can be encrypted using the ncw_aes_crypt tool
+#
+# FIPS:
+# The password can be encrypted using the ncw_fips_crypt tool
+#
+# IMPORTANT: If the Web GUI is running in FIPS mode, only NONE or FIPS
+#            encryption are allowed.
+#
+############################################################
+
+webtop.password.encryption: none
+
+############################################################
+#
+# webtop.fips: < off | on >
+# The following options are available for running
+# the Web GUI in FIPS mode:
+#
+# "off"  - FIPS mode disabled.
+# "on"   - FIPS mode enabled.
+#
+# IMPORTANT: TIP itself needs to be configured properly in FIPS mode.
+#
+#
+# webtop.fips.level: < fips140-2 | sp800-131 >
+# The security standard to work with:
+#
+# fips140-2  - Web GUI uses TLS 1.0, for compliance with FIPS 140-2
+# sp800-131  - Web GUI uses TLS 1.2, for compliance with SP800-131
+#
+# If no value is specified, fips140-2 is assumed.
+#
+# IMPORTANT: TIP itself needs to be configured properly for FIPS 140-2
+# level and SP800-131 level.
+#
+#
+# fips.security.key:
+# The name of the Web GUI's security key file.
+# Default value points to default TIP security key: %%/etc/encrypt/vault.key
+#
+#############################################################
+
+webtop.fips:off
+webtop.fips.level:
+fips.security.key=%%/etc/encrypt/vault.key
+
+#############################################################
+#
+# This section deals with SSL settings in order to establish a secure connection to ObjectServer.
+#
+# webtop.ssl.trustStore:
+# Set the location of ssl trust store.
+# TIP's default trust store is used if no value is provided (default if uncommented).
+# When using the default trust store, TIP's trust store UI panels can be used for configuration.
+#
+# webtop.ssl.trustStorePassword:
+# Set password in order to access trust store.
+# - No password is used if entry is uncommented (default if uncommented)
+# - If PKCS12 store type is configured, a password MUST be provided
+# - IF JKS store type is configured, a password CAN be provided in order to carry out an integrity check
+# - The standard password after installation is documented in the Tivoli Netcool/OMNIbus Web GUI Administration Guide
+#
+# IMPORTANT: The trust store password MUST only be configured in server.init for the SSL ObjectServer
+# connection. If TIP's default trust store is used, any password changes made in TIP's trust
+# store UI panels requires the same update to the passwords in server.init as well.
+#
+# trust.manager.type:
+# - IBM JRE: IbmX509 (default if uncommented)
+# - Sun JRE: SunX509
+#
+# trust.store.type:
+# - PKCS12 (default if uncommented)
+# - JKS
+#
+##############################################################
+
+webtop.ssl.trustStore:
+webtop.ssl.trustStorePassword:
+webtop.ssl.trustManagerType:IbmX509
+webtop.ssl.trustStoreType:PKCS12
+
+############################################################
+#
+# Location of the Web GUI server start-up files and directories.
+#
+# For Windows, please use double-backslash (\\) as the separator character.
+# For example,
+# logfile: %%\\logs\\webtop.log
+#
+############################################################
+#
+
+admin.stylesheets: %%/etc/system/stylesheets/
+ee.entitydir: %%/etc/entities/
+maps.directory: %%/etc/maps/
+views.directory: %%/etc/views/
+resources.directory: %%/etc/resources/
+logfile: %%/logs/webtop.log
+passwd.file: %%/etc/users/passwds
+browser.prp: %%/etc/browsers.prp
+illegalchar.file: %%/etc/illegalChar.prop
+
+############################################################
+#
+# Setting for non-administrative users' right to modify Global Filters
+# or Global Views
+#
+# 0: Non-administrative users CANNOT add, modify, or delete Global Filters
+# or Global Views.
+# 1: Non-administrative users can add and modify Global Filters, but cannot
+# delete Global Filters or Global Views.
+#
+# Default value:1
+############################################################
+users.global.filter.mode:1
+users.global.view.mode:1
+
+############################################################
+#
+# Setting for non-administrative users' right to modify Group Filters
+#
+# 0: Non-administrative users CANNOT add, modify, or delete Group Filters.
+# 1: Non-administrative users can add and modify Group Filters, but cannot
+# delete Group Filters.
+#
+# Default value:1
+############################################################
+users.group.filter.mode:1
+
+############################################################
+#
+# Timeout threashold in milliseconds for checking
+# reponse time of datasource associated with Map
+#
+# Default is 3000 milliseconds
+#
+############################################################
+datasource.response.timeout: 3000
+
+############################################################
+#
+# Configuration for timed task
+#
+# timedtasks.enabled - indicates if times timed tasks are
+# enabled or disabled, possible values are true or false,
+# default is false
+#
+############################################################
+timedtasks.enabled:false
+
+############################################################
+#
+# Configuration for configstore update timer tasks
+#
+############################################################
+timedtasks.default.startdelay: 120
+timedtasks.default.runperiod: 60
+
+############################################################
+#
+# Configuration for Event Provider Properties
+#
+# The default thread pool sizes for the Event Summary Data
+# and Event Data Services can be overwritten.
+#
+# Default value is 20
+#
+# eventprovider.eventsummarydataservice.threadpool.size:20
+#
+# eventprovider.eventdataservice.threadpool.size:20
+#
+# eventprovider.summarysqlworker.threadpool.size:20
+#
+# Note:- Increasing these values may cause poor performance and may
+# even cause the server to hang.
+#
+############################################################
+eventprovider.eventsummarydataservice.threadpool.size:20
+eventprovider.eventdataservice.threadpool.size:20
+eventprovider.summarysqlworker.threadpool.size:20
+
+############################################################
+#
+# Configuration for Metric Data Services
+#
+# The default thread pool sizes for the Metric Data
+# Services can be overwritten.
+#
+# Default value is 20
+#
+# metricdataservice.threadpool.size:20
+#
+# Note:- Increasing these values may cause poor performance and may
+# even cause the server to hang.
+#
+############################################################
+metricdataservice.threadpool.size:20
+
+############################################################
+#
+# General datasource configuration properties.
+#
+# The delay time to wait before switching back to the primary
+# ObjectServer following a failback can be configured. During
+# this period, the backup server is used.
+#
+# Default value is 120
+#
+# datasource.failback.delay:120
+#
+# This value (in seconds) may need to be adjusted depending
+# on the latency of a tiered ObjectServer architecture.
+#
+############################################################
+datasource.failback.delay:120
+
+############################################################
+#
+# Load Balancing properties
+#
+# cluster.mode - indicates whether the Web GUI server is part of a
+# load balancing cluster. The value is 'on' or 'off'. The
+# default is off. When the server is in a cluster, set
+# the value to on.
+#
+# cluster.hostname - identifies the host that the Web GUI server
+# is running on. The value is the host name or its TCP/IP
+# address. Always set this property to the correct value
+# when cluster.mode is on.
+#
+# cluster.port - contains the SSL port that the Web GUI server
+# uses. The value is a numeric port value and the default is
+# 16311. Always set this property to the correct value when
+# cluster.mode is on.
+#
+# cluster.replication.file.mode - indicates whether to perform
+# additional checks to prevent redundant files replication across
+# the nodes in load balancing cluster. Set the value of  this property to '1'
+# only if redundant files replication occurs with the default mode.
+# The value of the property can be  it can take is 0 (no additional checks are performed)
+# or 1 (additional checks are performed).
+# The default value is 0.
+#
+# cluster.waapi.notification.delay - defines a delay period
+# (in milliseconds) that is used to delay notifications of
+# configuration changes to other nodes in the cluster during
+# the processing of WAAPI command files.
+# Default value is 2000.
+#
+############################################################
+cluster.mode:off
+cluster.hostname:
+cluster.port:16311
+cluster.replication.file.mode:0
+cluster.waapi.notification.delay:2000
+
+############################################################
+#
+# webtop.keepalive.interval
+# Specifies the time interval (in minutes) for the ping request to the TIP server to prevent the server from  timing out while
+# an AEL or Maplet page is still active.
+# It must be a positive integer.
+# Default value:3
+#
+############################################################
+webtop.keepalive.interval:3
+
+############################################################
+#
+# The method to be used in the AEL client when adding journal
+# entries.
+#
+# journal.update.asynchronous
+#
+# This setting is used to enable or disable asynchronous journal
+# updates in the Web GUI AEL client. Valid options are:
+#
+# false: Journal updates will be run synchronously in the AEL
+# client. The user will only be able to return to the AEL once
+# the journal update has completed. This is the recommended
+# setting in most environments, where journal updates run quickly.
+#
+# true: Journal updates will be run asynchronously in the AEL
+# client, meaning users may leave the journal dialog before the
+# journal update has completed. This setting may be useful in
+# environments where journal updates take a long time to complete.
+#
+# Default value: false
+#
+############################################################
+journal.update.asynchronous:false
+
+############################################################
+#
+# Server feature restriction mode
+#
+# server.mode: < 0 | 1 >
+#
+# This setting is used to disable access to particular Web GUI
+# features, as defined in the restricted_urls.lst file. Valid
+# options are 0 or 1:
+#
+# 0: Normal mode. The server runs normally with all Web
+# GUI features available.
+#
+# 1: Restricted mode. The server runs in restricted mode. The
+# URLs matching the patterns listed in the restricted_urls.lst
+# file are not available to users.
+#
+# Default value: 0
+#
+############################################################
+server.mode:0
+
+############################################################
+#
+# Journal update propagation in a dual-server desktop (DSD)
+# data source configuration.
+#
+# journal.update.propagate
+#
+# This setting is used to enable or disable the propagation
+# of journal updates to all display servers in the read
+# cloud, when using a DSD data source configuration. Valid
+# options are:
+#
+# true: Journal updates will be sent from the AEL to all
+# display servers immediately.
+#
+# false: Journal updates will be sent only to the primary
+# ObjectServer and the user's current display server. Use of
+# gateways should ensure the changes are propagated to the
+# other display servers.
+#
+# Default value: true
+#
+############################################################
+journal.update.propagate:true
+
+#############################################################
+#
+# Configuration of the compression threshold of the sql in
+# transient filters
+#
+# This setting specifies the maximum size in bytes of the SQL
+# string. If the SQL is larger than this, then it will be
+# compressed to conserve memory.
+#
+# Note: Specifying a value that is too small may result in more
+# memory being used due to header data in compressed strings.
+# Smaller strings are costly to process relative their size
+# and the memory saved is not usually significant by comparison
+# with larger strings. The minimum recommended value is 256.
+#
+# A value of 0 can be used to turn this compression feature off
+#
+# Default value is: 0
+#############################################################
+transientfilter.compression.threshold:0
+
+############################################################
+#
+# Fields in this list are displayed at the top of the event
+# list information display, in the order specified.
+#
+# This setting affects AEL, LEL, Event Viewer & Mobile.
+#
+############################################################
+eventlist.information.fields.important:Summary, Node, Severity, Acknowledged, LastOccurrence
+
+############################################################
+#
+# When the property is set to false, the Fields in the AEL
+# Information pop-up dialog box will have the important
+# fields (above) shown first and then the remaining fields
+# will be unordered.
+#
+# If set to true, any important fields will be
+# listed first, then the remaining fields will be sorted in
+# alphabetical order. To list all fields in alphabetical
+# order, ensure that eventlist.information.fields.important
+# is empty.
+#
+# If the property is not set, it will be defaulted to true.
+#
+############################################################
+eventlist.information.fields.sort:true
+
+#############################################################
+#
+# User File Encoding Charset
+#
+# Usage:
+# user.file.encoding: UTF-8
+#
+# This property defines the file encoding charset for
+# reading and writing files such as entity.group
+#
+# Default value: UTF-8
+#
+# If set to UTF-8:
+# It will use UTF-8 charset to read and write files.
+#
+#############################################################
+
+############################################################
+#
+# Configuration of event sorting in the Event Viewer.
+#
+# alerts.status.sort.displayvalue: <comma-delimited list of fields>
+#
+# This setting specifies the fields in alerts.status that require
+# sorting by their conversion value (rather than by the underlying
+# field value), when displaying event data in the Event Viewer.
+#
+# The value is a comma-delimited list of field names from the
+# alerts.status table.
+#
+# The default value is: Acknowledged,Class,ExpireTime,Flash,NmosCauseType,NmosManagedStatus,OwnerGID,OwnerUID,SupressEscl,TaskList,Type,X733EventType,X733ProbableCause
+#
+############################################################
+alerts.status.sort.displayvalue=Acknowledged,Class,ExpireTime,Flash,NmosCauseType,NmosManagedStatus,OwnerGID,OwnerUID,SupressEscl,TaskList,Type,X733EventType,X733ProbableCause
+
+############################################################
+#
+# Configuration of the column grouping
+#
+# columngrouping.maximum.columns: <number of columns>
+#
+# This setting specifies the maximum number of columns that
+# users are able to group by in the View builder.
+#
+# Default value: 3
+#
+############################################################
+columngrouping.maximum.columns:3
+
+############################################################
+#
+# Configuration of allowed columns for grouping
+# grouping.allowedcolumns: <comma-delimited list of fields>
+#
+# This property specifies the fields in alerts.status that are allowed for Event Grouping.
+# Any field not listed here would be blocked for grouping and hence it is important
+# to keep this list up-to-date.
+#
+# The Default value is: Acknowledged,AlertGroup,Class,Customer,Location,Node,NodeAlias,NmosCauseType,NmosManagedStatus,Severity,Service
+#
+############################################################
+columngrouping.allowedcolumns=Acknowledged,AlertGroup,Class,Customer,Location,Node,NodeAlias,NmosCauseType,NmosManagedStatus,Severity,Service
+
+############################################################
+#
+# Configuration of the Event Viewer maximum page size.
+#
+# eventviewer.pagesize.max:<number>
+#
+# This setting specifies the maximum number of event rows that
+# are loaded into an Event Viewer.
+#
+# If the number of rows matching the filter exceeds this value,
+# only the number of rows specified by this property are
+# displayed in the Event Viewer. A value of -1 removes this limit
+# and the Event Viewer displays all events.
+#
+# Note: Specifying a value that is too large can cause the server
+# to run out of memory; this depends on the maximum heap size
+# that is set for the server
+#
+# Default value is: 20000
+#
+############################################################
+eventviewer.pagesize.max:20000
+
+############################################################
+#
+# eventviewer.refresh.mode:<type of refresh>
+#
+# If set to 0:
+# The Event Viewer refresh query events that are newer than
+# the latest StateChange marker time.
+#
+# If set to 1:
+# The Event Viewer refresh query events that are newer or on
+# the latest StateChange marker time.
+#
+# If set to 2:
+# The Event Viewer refresh query events that are inclusive of
+# last cache period (if the EventList cache is turned on).
+#
+# Default value is: 0
+#
+############################################################
+eventviewer.refresh.mode:0
+
+############################################################
+#
+# Configuration of command tool availability in the Event
+# Viewer.
+#
+# eventviewer.tools.command
+#
+# This setting is used to enable or disable command tools in
+# Event Viewer. Command tools are used to run commands on the
+# client user's operating system, and this requires the use
+# of a web browser plugin. Valid options are:
+#
+# true: Command tools will be enabled in Event Viewer. Any
+# command tools which are included in the menu definition will
+# be visible, and if chosen will be executed using a browser
+# plugin.
+#
+# false: Command tools will be disabled in Event Viewer. Any
+# command tools which are included in the menu definition will
+# not be visible, and hence no browser plugin will be loaded
+# or used by Event Viewer.
+#
+# Default value: false
+#
+############################################################
+eventviewer.tools.command:false
+
+############################################################
+#
+# Configuration of menu display in the Event Viewer.
+#
+# eventviewer.tools.showplaceholders:false
+#
+# This setting is used to control the display of disabled
+# tools and empty menus in the Event Viewer. Valid options
+# are:
+#
+# true: Any tools or prompt values that are disabled because
+# of selection based rules are displayed in disabled state on
+# the menu. Sub-menus that contain only disabled tools (or
+# are empty because group restrictions forbid access to the
+# tools) are themselves displayed on the alerts menu.
+#
+# false: Any tools or prompt values that are disabled because
+# of selection based rules are not shown on the alerts menu.
+# Sub-menus that contain only disabled tools (or are empty
+# because group restrictions forbid access to the tools)
+# are not displayed on the alerts menu.
+#
+# Default value: false
+#
+############################################################
+eventviewer.tools.showplaceholders:false
+
+############################################################
+#
+# Configuration of pop-up messages in the Event Viewer.
+#
+# eventviewer.messages.popup
+#
+# This setting is used to enable or disable pop-up messages in
+# Event Viewer. Pop-up messages are used to show information to
+# the user in various situations, such as after running a tool,
+# updating workspace preferences, and when errors occur.
+# Valid options are:
+#
+# true:  Pop-up messages will be enabled in Event Viewer.
+# false: Pop-up messages will be disabled in Event Viewer.
+#
+# Default value: true
+#
+############################################################
+eventviewer.messages.popup:true
+
+############################################################
+#
+# Configures the location of IBM SmartCloud Analytics Log
+# Analysis (SCA-LA)
+#
+# scala.url=<URL>
+#
+# This setting specifies the location of SCA-LA. This must
+# include the protocol (http/https), port (normally 9987)
+# and first part of the URL (normally "Unity").
+#
+# This is used for both the launch in context via
+# right click tools and the alert history in the alert details.
+# The https protocol must be specified if alerts history
+# is used.
+#
+# Default value is: https://localhost:9987/Unity
+#
+############################################################
+scala.url=https://localhost:9987/Unity
+
+############################################################
+#
+# Configures the name of IBM SmartCloud Analytics Log
+# Analysis (SCA-LA) data source. Note that this is not
+# related to a Web GUI data source
+#
+# scala.datasource=<datasource>
+#
+# Default value is: omnibus
+#
+############################################################
+scala.datasource=omnibus
+
+############################################################
+#
+# Indicates if integrated event search functions against
+# IBM Operations Analytics - Log Analysis (formerly IBM
+# SmartCloud Analytics - Log Analysis or "SCA-LA") should be
+# enabled.
+#
+# scala.integratedsearch.enabled
+#
+# Valid options are:
+#
+# true: Integrated event search functions will be enabled.
+# false: Integrated event search functions will be disabled.
+#
+# Default value: false
+#
+############################################################
+scala.integratedsearch.enabled=false
+
+############################################################
+#
+# The name of the proxy user to use for automated login to
+# IBM Operations Analytics - Log Analysis (formerly "SCA-LA")
+# when performing an integrated log search.
+#
+# scala.user
+#
+# There is no default value.
+#
+############################################################
+scala.user=
+
+############################################################
+#
+# The password of the proxy user being used for automated login
+# to IBM Operations Analytics - Log Analysis (formerly "SCA-LA")
+# when performing an integrated log search.
+#
+# scala.password
+#
+# There is no default value.
+#
+############################################################
+scala.password=
+
+###########################################################
+#
+# Configures the version of IBM SmartCloud Analytics Log
+# Analysis (SCA-LA). This allows the appropriate search
+# syntax to be used for SCA-LA search queries.
+#
+# scala.version=<version>
+#
+# Default value is:1.2.0.3
+#
+############################################################
+scala.version=1.2.0.3
+
+############################################################
+#
+# Configures the OMNIbus keyword custom application for
+# IBM SmartCloud Analytics Log Analysis (SCA-LA).
+# scala.app.keyword=<appname>
+#
+# Default value is:OMNIbus_Keyword_Search
+#
+############################################################
+scala.app.keyword=OMNIbus_Keyword_Search
+
+############################################################
+#
+# Configures the OMNIbus static dashboard custom application
+# for IBM SmartCloud Analytics Log Analysis (SCA-LA).
+# scala.app.static.dashboard=<appname>
+#
+# Default value is:OMNIbus_Static_Dashboard
+#
+############################################################
+scala.app.static.dashboard=OMNIbus_Static_Dashboard
+
+############################################################
+#
+# Configures the "Show alerts between two nodes" custom
+# applications for IBM SmartCloud Analytics Log Analysis (SCA-LA).
+# scala.app.event.topology.layer2=<appname>
+# scala.app.event.topology.layer3=<appname>
+#
+# Default values are:
+# NM_Show_Alerts_Between_Two_Nodes_Layer2
+# NM_Show_Alerts_Between_Two_Nodes_Layer3
+#
+############################################################
+scala.app.event.topology.layer2=NM_Show_Alerts_Between_Two_Nodes_Layer2
+scala.app.event.topology.layer3=NM_Show_Alerts_Between_Two_Nodes_Layer3
+
+############################################################
+#
+# When the property is set to false, the newly created Event
+# Dashboard will not load any Monitor Boxes as default.
+# Instead, user will have to go to edit mode and select
+# filters to be added into Event Dashboard.
+#
+# If set to true, the newly created Event Dashboard will
+# load all Global Filters as default.
+#
+# If the property is not set, it will be defaulted to true.
+#
+############################################################
+dashboard.allfilters:true
+
+############################################################
+#
+# dashboard.render.mode:
+# Specifies the render mode for the event dashboard widget.
+# Possible options are "applet" to use the Java applet and
+# "lightweight" to use the lightweight render option. Note
+# that if the plugin.enabled property is set to false, then
+# this option is ignored and all event dashboards are
+# rendered in lightweight mode.
+#
+# Default value:applet
+############################################################
+dashboard.render.mode:lightweight
+
+############################################################
+#
+# dashboard.edit.render.mode:
+# Specifies the render mode for the event dashboard widget
+# preferences editor.
+# Possible options are "applet" to use the Java applet and
+# "lightweight" to use the lightweight render option.  Note
+# that if the plugin.enabled property is set to false, then
+# this option is ignored and the dashboard editor is rendered
+# in lightweight mode.
+#
+# Default value: applet
+############################################################
+dashboard.edit.render.mode:lightweight
+
+############################################################
+#
+# lightweight.map.legacy.actions:
+# Specifies if the legacy Event List launches are supported
+# by the map when it is displayed in lightweight (non-applet)
+# mode.
+#
+# Possible options are "false" which ensures that the Event
+# Viewer is launched for map elements whose click action is
+# set to launch a Table View or Lightweight Event List. If
+# set to "true" then the legacy Table View or Lightweight
+# Event List is launched.
+#
+# Default value: false
+############################################################
+lightweight.map.legacy.actions:false
+
+###########################################################
+#
+# Watchlist map configuration
+# Specifies how an event viewer will react to clicks on
+# watchlist map monitors.
+#
+# This configuration consists in two items:
+#
+# watchlist.map.monitor.onclick.view
+#
+# Clicking on a watchlist monitor will change the active view
+# in the associated Event Viewer as per the watchlist's
+# configuration.
+# A watchlist is configured with a view upon creation.
+# The value for the view comes from the Event Viewer's
+# configuration (not the currently active view).
+# The change of view is transient and will be reset to the
+# Event Viewer's configuration when reloading the page.
+# This property only impacts on watchlists applied through a monitor.
+# Applying the watchlist from an Event Viewer's drop-down filter
+# menu will always apply the view the watchlist is configured with.
+#
+# Default value: true
+#
+# watchlist.map.monitor.onclick.datasources
+#
+# Clicking on a watchlist monitor will change the datasources
+# the associated Event Viewer will display as per the
+# watchlist's configuration.
+# The change of datasources is transient and will be reset
+# to the Event Viewer's configuration when reloading the page.
+# This property only impacts on watchlists applied through a monitor.
+# Applying the watchlist from an Event Viewer's drop-down filter
+# menu will always apply the datasource(s) the watchlist is configured with.
+#
+# Default value: true
+############################################################
+watchlist.map.monitor.onclick.view:true
+watchlist.map.monitor.onclick.datasources:true
+
+############################################################
+#
+# Suppress dependent filters tab in filter builder, when
+# editing filters in basic mode.
+#
+# The dependent filters tab requires loading all available
+# filters, which can cause visible performance issues if
+# enough filters are present.
+#
+# Suppressing the dependent filters tab when not required
+# will allow a much faster load of builder forms for filters
+# in basic mode, at the cost of not being able to edit
+# dependencies through the form.
+#
+# Filters in dependent mode are not affected.
+#
+# Default value: false
+#
+#############################################################
+filterbuilder.dependent.suppress:false

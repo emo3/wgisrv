@@ -1,0 +1,122 @@
+########################################################## {COPYRIGHT-TOP} ###
+# Licensed Materials - Property of IBM
+# 5724-S44
+#
+# (C) Copyright IBM Corp. 2014, 2015
+#
+# US Government Users Restricted Rights - Use, duplication, or
+# disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+########################################################## {COPYRIGHT-END} ###
+
+###############################################################
+##
+## Ant variables to configure OMNIbus Web GUI install
+##
+## Usage: See build.xml for instruction
+##
+###############################################################
+
+#---- Characters you can use: 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.()
+#----
+#---- These properties define the user name and password of the administration user for the application server profile.
+#---- You supply these values when logging in to the administrative console.
+#----    Set these properties to suit your installation.
+WASUserID=<%= node['wgisrv']['was_act'] %>
+WASPassword=<%= node['wgisrv']['dash_pwd'] %>
+
+# Sample of properties from <DASH_HOME>\properties\.tipinfo.properties
+# These values are set when JazzSM/DASH installed
+#WAS_CELL_NAME=JazzSMNode01Cell
+#WAS_PROFILE_PATH=C:\\Program Files\\IBM\\JazzSM\\profile
+#TIP_BUILD_NUMBER=201302081853
+#WAS_PROFILE_NAME=JazzSMProfile
+#TIP_HOME=C:\\Program Files\\IBM\\JazzSM\\ui
+#WAS_HOME=C:\\Program Files (x86)\\IBM\\WebSphere\\AppServer
+#WAS_EDITION=BASE
+#WAS_SERVER_NAME=server1
+#WAS_NODE_NAME=JazzSMNode01
+
+# Sample of properties from <WAS_PROFILE_PATH>/properties/portdef.props
+#WC_defaulthost_secure=16311
+#WC_defaulthost=16310
+#WC_adminhost_secure=16316
+#WC_adminhost=16315
+#BOOTSTRAP_ADDRESS=16312
+#SOAP_CONNECTOR_ADDRESS=16313
+#SAS_SSL_SERVERAUTH_LISTENER_ADDRESS=16321
+#CSIV2_SSL_SERVERAUTH_LISTENER_ADDRESS=16323
+#CSIV2_SSL_MUTUALAUTH_LISTENER_ADDRESS=16322
+#ORB_LISTENER_ADDRESS=16320
+#DCS_UNICAST_ADDRESS=16318
+#IPC_CONNECTOR_ADDRESS=16314
+#REST_NOTIFICATION_PORT=16324
+
+# The following properties are used for creating
+# PRODUCTHOME/etc/default/server.init file.
+CONFIGURATION_TOKEN_OBJECTSERVER_OSRESYNC=false
+
+# OMNIbusWebGUI.war/WEB-INF/ibm-portal-topology.xml
+CONFIGURATION_TOKEN_CONTEXT_ROOT=/ibm/console
+
+# The following properties are used for creating
+# PRODUCTHOME/etc/default/datasources/ncwDataSourceDefinitions.xml file.
+CONFIGURATION_TOKEN_OBJECTSERVER_PRIMARY_NAME=<%= node['wgisrv']['ncoms'] %>
+CONFIGURATION_TOKEN_OBJECTSERVER_USER=root
+CONFIGURATION_TOKEN_OBJECTSERVER_PASSWORD=<%= node['wgisrv']['root_pwd'] %>
+CONFIGURATION_TOKEN_OBJECTSERVER_PRIMARY_HOST=<%= node['OS'] %>
+CONFIGURATION_TOKEN_OBJECTSERVER_PRIMARY_PORT=<%= node['wgisrv']['os_port'] %>
+#
+OBJECTSERVER_ENABLE_SECONDARY_SERVER=false
+#
+CONFIGURATION_TOKEN_OBJECTSERVER_FAILOVER=
+CONFIGURATION_TOKEN_OBJECTSERVER_SECONDARY_HOST=<%= node['OS'] %>
+CONFIGURATION_TOKEN_OBJECTSERVER_SECONDARY_PORT=<%= node['wgisrv']['pa_port'] %>
+CONFIGURATION_TOKEN_OBJECTSERVER_SSL=false
+
+# Encryption of objectServer password, FIPS mode
+OBJECTSERVER_PASSWORD_FIPS=false
+
+# To set NCOSVMM as User Repo
+# For filebase/LDAP, use USER_REGISTRY_OBJECTSERVER_SELECTED=false
+USER_REGISTRY_OBJECTSERVER_SELECTED=true
+
+# To set NCOSVMM As Default User Repo
+# This is only used if USER_REGISTRY_OBJECTSERVER_SELECTED=true
+DEFAULT_USER_REGISTRY_SELECTION=OBJECT_SERVER
+
+# For NCOS, use netcoolObjectServerRepository
+# or filebase, use defaultWIMFileBasedRealm
+CONFIGURATION_TOKEN_REPO_FOR_DEFAULT_USERSANDGROUPS=netcoolObjectServerRepository
+
+# Create the default ncoadmin, ncouser accounts and
+# the default Netcool_OMNIbus_Admin, Netcool_OMNIbus_User groups.
+CREATE_DEFAULT_USERSANDGROUPS=false
+
+#----
+#---- Choose the product installation folder.
+#---- Script Install:
+#----    For Unix platform:
+#----                 example: OMNIBUS_WEBGUI_HOME=/opt/IBM/netcool/omnibus_webgui
+#----    For Windows platform:
+#----                 example: OMNIBUS_WEBGUI_HOME=C:\\IBM\\netcool\\omnibus_webgui
+#----                 Note: On the Windows platform, \ is an escape character. So use \\ when defining
+#----                       the path on a Windows platform.
+#---- Characters you can use: 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.:/\\()
+#----
+#---- Choose the JazzSM UI (DASH) folder.
+#---- Script Install:
+#----    For Unix platform:
+#----                 example: DASH_HOME=/opt/IBM/JazzSM/ui
+#----    For Windows platform:
+#----                 example: DASH_HOME=C:\\Program Files\\IBM\\JazzSM\\ui
+#----
+#----                 Note: On the Windows platform, \ is an escape character. So use \\ when defining
+#----                       the path on a Windows platform.
+#----
+#---- To reuse an instance of DASH, set this property to the existing DASH installation location.
+#---- Characters you can use: 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_-.:/\\()
+#---- Note: A space is allowed on the Windows platform, but not Unix.
+# Change: These are auto-generated
+OMNIBUS_WEBGUI_HOME=<%= node['wgisrv']['ng_dir'] %>/omnibus_webgui
+DASH_HOME=<%= node['wgisrv']['jaz_dir'] %>/ui
+WAS_HOME_JAVA=<%= node['wgisrv']['was_dir'] %>/java_1.7_64

@@ -26,9 +26,9 @@ suites:
   - name: wgisrv
     run_list:
       - recipe[wgisrv::make_nc_wg]
-      - recipe[nc_base::add_x11]
     verifier:
       inspec_tests:
         - test/integration/default
     attributes:
       GS: <%= ENV['GS'] %>
+      OS: <%= ENV['OS'] %>
