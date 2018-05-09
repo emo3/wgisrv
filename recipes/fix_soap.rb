@@ -10,7 +10,7 @@ end
 execute 'encode_soap' do
   command "#{node['wgisrv']['jaz_dir']}/profile/bin/PropFilePasswordEncoder.sh \
   #{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props \
-  com.ibm.loginPassword"
+  com.ibm.SOAP.loginPassword"
   cwd "#{node['wgisrv']['jaz_dir']}/profile/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
