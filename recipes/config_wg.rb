@@ -8,7 +8,7 @@ end
 
 # Configure files
 execute 'config_wg' do
-  command "#{node['wgisrv']['jaz_dir']}/profile/bin/was_ant.sh configureOS"
+  command "#{node['wgisrv']['jaz_dir']}/profile/bin/ws_ant.sh configureOS"
   cwd "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
