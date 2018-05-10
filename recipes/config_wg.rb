@@ -1,3 +1,10 @@
+# set the IP and object server name
+hostsfile_entry node['OSP'] do
+  hostname node['OS']
+  action   :create
+  unique   true
+end
+
 # configure WebGUI to work with Netcool 8.1 Object Server
 template "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties" do
   source 'OMNIbusWebGUI.properties.erb'

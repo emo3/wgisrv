@@ -32,3 +32,4 @@ suites:
     attributes:
       GS: <%= ENV['GS'] %>
       OS: <%= ENV['OS'] %>
+      OSP: <%= ENV['OSP'] %>
