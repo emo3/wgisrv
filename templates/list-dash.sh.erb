@@ -1,0 +1,62 @@
+#!/bin/bash -eux
+#########################
+## List all group roles in Dash
+#########################
+echo ""
+echo ">>> List all Group Roles in Dash"
+echo "Running -> AdminTask.searchGroups('[-cn *]')"
+<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+-lang jython \
+-c "AdminTask.searchGroups('[-cn *]')"
+# cn=ISQLWrite,o=netcoolObjectServerRepository
+# cn=ISQL,o=netcoolObjectServerRepository
+# cn=Administrator,o=netcoolObjectServerRepository
+# cn=System,o=netcoolObjectServerRepository
+# cn=Gateway,o=netcoolObjectServerRepository
+# cn=Normal,o=netcoolObjectServerRepository
+# cn=Public,o=netcoolObjectServerRepository
+# cn=Probe,o=netcoolObjectServerRepository
+#########################
+## List all Roles in Dash
+#########################
+echo ""
+echo "*** List all Roles in Dash"
+echo "Running -> <%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh ListRoles"
+<%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh ListRoles
+# chartViewer
+# operator
+# configurator
+# samples
+# monitor
+# administrator
+# iscadmins
+# chartCreator
+# chartAdministrator
+# iscusers
+# suppressmonitor
+# tcrPortalOperator
+# ncw_admin
+# ncw_user
+# ncw_dashboard_editor
+# ncw_gauges_editor
+# ncw_gauges_viewer
+# netcool_ro
+# netcool_rw
+# all authenticated portal users
+#########################
+## List all User Roles in Dash
+#########################
+echo ""
+echo "*** List all User Roles in Dash"
+for x in nobody root netcool smadmin
+do
+  echo "Running -> consolecli.sh ListRolesFromUser --userID {$x}"
+  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh \
+  ListRolesFromUser \
+  --userID $x
+done
+# nobody  = iscusers
+# root    = iscusers
+# netcool = iscusers
+# smadmin = samples, administrator, iscadmins,
+#  chartAdministrator, iscusers, tcrPortalOperator

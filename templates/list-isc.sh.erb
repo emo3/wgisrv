@@ -1,0 +1,48 @@
+#!/bin/bash -eux
+#########################
+## List all users in WebSphere ISC
+#########################
+echo ""
+echo "** List all Manage Users in WebSphere ISC **"
+echo "Running -> AdminTask.searchUsers('[-cn *]')"
+<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+-lang jython \
+-c "AdminTask.searchUsers('[-cn *]')"
+# uid=nobody,o=netcoolObjectServerRepository
+# uid=root,o=netcoolObjectServerRepository
+# uid=netcool,o=netcoolObjectServerRepository
+# uid=smadmin,o=defaultWIMFileBasedRealm
+#########################
+## List all groups in WebSphere ISC
+#########################
+echo ""
+echo ">> List all Manage Groups in WebSphere ISC <<"
+echo "Running -> AdminTask.searchGroups('[-cn *]')"
+<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+-lang jython \
+-c "AdminTask.searchGroups('[-cn *]')"
+# cn=ISQLWrite,o=netcoolObjectServerRepository
+# cn=ISQL,o=netcoolObjectServerRepository
+# cn=Administrator,o=netcoolObjectServerRepository
+# cn=System,o=netcoolObjectServerRepository
+# cn=Gateway,o=netcoolObjectServerRepository
+# cn=Normal,o=netcoolObjectServerRepository
+# cn=Public,o=netcoolObjectServerRepository
+# cn=Probe,o=netcoolObjectServerRepository
+#########################
+## List all Properties Groups for user {X}
+#########################
+echo ""
+for x in uid=nobody,o=netcoolObjectServerRepository uid=root,o=netcoolObjectServerRepository uid=netcool,o=netcoolObjectServerRepository uid=smadmin,o=defaultWIMFileBasedRealm
+do
+  # List all Roles for user $x
+  echo "*** ^^^ List all Roles for user {$x}"
+  echo "Running -> AdminTask.getMembershipOfUser('[-uniqueName $x]')"
+  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+  -lang jython \
+  -c "AdminTask.getMembershipOfUser('[-uniqueName $x]')"
+done
+# for all user(s) except smadmin
+# cn=System,o=netcoolObjectServerRepository
+# cn=Public,o=netcoolObjectServerRepository
+# For smadmin there are no pre-assigned roles

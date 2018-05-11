@@ -1,0 +1,6 @@
+# Encrypt passwords used in silent xml file(s)
+## $1 = Clear Password
+<%= node['wgisrv']['app_dir'] %>/InstallationManager/eclipse/tools/imcl \
+-silent \
+-noSplash \
+encryptString $1
