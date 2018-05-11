@@ -1,6 +1,6 @@
 # Add ncw_admin ... role(s) to {netcool, smadmin}
 echo "Add role(s) to {netcool}"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh MapRolesToUser \
+<%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh MapRolesToUser \
 --userID netcool \
 --rolesList \
 administrator,chartAdministrator,iscadmins,ncw_admin,\
@@ -9,7 +9,7 @@ netcool_rw,tcrPortalOperator
 ##
 # Add to ncw_admin role {smadmin}
 echo "Add role(s) to {smadmin}"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh MapRolesToUser \
+<%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh MapRolesToUser \
 --username smadmin \
 --password ${SPW} \
 --userID smadmin \
@@ -18,6 +18,6 @@ ncw_admin,ncw_user,ncw_dashboard_editor,ncw_gauges_editor,\
 netcool_rw,tcrPortalOperator
 ##
 echo "Add user {netcool} as administrative user role"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.mapUsersToAdminRole('[-roleName deployer -userids [netcool]]'), AdminConfig.save()"

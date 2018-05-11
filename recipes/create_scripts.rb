@@ -19,7 +19,7 @@ scriptlist = [
 ]
 scriptlist.each do |script|
   # write script
-  template "#{script}.sh" do
+  template "#{node['wgisrv']['jaz_dir']}/scripts/#{script}.sh" do
     source "#{script}.sh.erb"
     user node['wgisrv']['nc_act']
     group node['wgisrv']['nc_grp']

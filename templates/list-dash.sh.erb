@@ -5,7 +5,7 @@
 echo ""
 echo ">>> List all Group Roles in Dash"
 echo "Running -> AdminTask.searchGroups('[-cn *]')"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.searchGroups('[-cn *]')"
 # cn=ISQLWrite,o=netcoolObjectServerRepository
@@ -21,8 +21,8 @@ echo "Running -> AdminTask.searchGroups('[-cn *]')"
 #########################
 echo ""
 echo "*** List all Roles in Dash"
-echo "Running -> <%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh ListRoles"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh ListRoles
+echo "Running -> <%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh ListRoles"
+<%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh ListRoles
 # chartViewer
 # operator
 # configurator
@@ -51,7 +51,7 @@ echo "*** List all User Roles in Dash"
 for x in nobody root netcool smadmin
 do
   echo "Running -> consolecli.sh ListRolesFromUser --userID {$x}"
-  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/ui/bin/consolecli.sh \
+  <%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh \
   ListRolesFromUser \
   --userID $x
 done

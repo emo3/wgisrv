@@ -25,7 +25,8 @@ platforms:
 suites:
   - name: wgisrv
     run_list:
-      - recipe[wgisrv::make_nc_wg]
+      # - recipe[wgisrv::make_nc_wg]
+      - recipe[wgisrv::create_scripts]
     verifier:
       inspec_tests:
         - test/integration/default

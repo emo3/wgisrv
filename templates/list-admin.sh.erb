@@ -5,7 +5,7 @@
 echo ""
 echo "** List all Administrative user roles **"
 echo "Running -> AdminTask.listUserIDsOfAuthorizationGroup()"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.listUserIDsOfAuthorizationGroup()"
 # nobody
@@ -17,20 +17,21 @@ echo "Running -> AdminTask.listUserIDsOfAuthorizationGroup()"
 # operator
 # adminsecuritymanager
 echo ""
-for x in netcool netcool@defaultWIMFileBasedRealm netcool@netcoolObjectServerRepository netcool@CellAuthorizationGroup
+# for x in smadmin netcool netcool@defaultWIMFileBasedRealm netcool@netcoolObjectServerRepository netcool@CellAuthorizationGroup
+for x in smadmin netcool
 do
   echo "Running -> AdminTask.listAuthorizationGroupsForUserID('[-userid $x]')"
-  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+  <%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
   -lang jython \
   -c "AdminTask.listAuthorizationGroupsForUserID('[-userid $x]')"
   echo ""
 done
 echo ""
 #for x in deployer configurator monitor operator administrator adminsecuritymanager
-for x in netcool netcool@defaultWIMFileBasedRealm netcool@netcoolObjectServerRepository
+for x in smadmin netcool
 do
   echo "Running -> AdminTask.listAuthorizationGroupsForGroupID('[-groupid $x]')"
-  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+  <%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
   -lang jython \
   -c "AdminTask.listAuthorizationGroupsForGroupID('[-groupid $x]')"
   echo ""
@@ -48,6 +49,6 @@ echo "** List all Administrative group roles **"
 #########################
 echo ""
 echo "Running -> AdminTask.listGroupIDsOfAuthorizationGroup()"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.listGroupIDsOfAuthorizationGroup()"

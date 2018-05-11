@@ -5,7 +5,7 @@
 echo ""
 echo "** List all Manage Users in WebSphere ISC **"
 echo "Running -> AdminTask.searchUsers('[-cn *]')"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.searchUsers('[-cn *]')"
 # uid=nobody,o=netcoolObjectServerRepository
@@ -18,7 +18,7 @@ echo "Running -> AdminTask.searchUsers('[-cn *]')"
 echo ""
 echo ">> List all Manage Groups in WebSphere ISC <<"
 echo "Running -> AdminTask.searchGroups('[-cn *]')"
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.searchGroups('[-cn *]')"
 # cn=ISQLWrite,o=netcoolObjectServerRepository
@@ -38,7 +38,7 @@ do
   # List all Roles for user $x
   echo "*** ^^^ List all Roles for user {$x}"
   echo "Running -> AdminTask.getMembershipOfUser('[-uniqueName $x]')"
-  <%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+  <%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
   -lang jython \
   -c "AdminTask.getMembershipOfUser('[-uniqueName $x]')"
 done

@@ -1,6 +1,6 @@
 # Create User {X}
 ## $1 = User Name
 ## $2 = Clear Password
-<%= node['wgisrv']['jaz_dir'] %>/JazzSM/profile/bin/wsadmin.sh \
+<%= node['wgisrv']['jaz_dir'] %>/profile/bin/wsadmin.sh \
 -lang jython \
 -c "AdminTask.createUser('[-uid $1 -password $2 -confirmPassword $2 -cn $1]')
