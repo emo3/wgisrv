@@ -20,7 +20,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: mycsc-7.4
+  - name: mycsc-7.5
 
 suites:
   - name: wgisrv
