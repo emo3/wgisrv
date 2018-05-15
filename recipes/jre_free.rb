@@ -13,12 +13,7 @@ template "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init" do
 end
 
 ## restart JazzSM/Dash Server
-# stop JazzSM/Dash Server
-execute 'stop_wg_jre' do
-  command "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 -quiet"
-  cwd "#{node['wgisrv']['was_dir']}/bin"
-  user node['wgisrv']['nc_act']
-  group node['wgisrv']['nc_grp']
+stop_server 'stop server' do
   action :run
 end
 # start wg

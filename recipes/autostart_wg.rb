@@ -5,11 +5,7 @@ template '/etc/init.d/ncg' do
 end
 
 # stop JazzSM/Dash Server
-execute 'stop_wg_as' do
-  command "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 -quiet"
-  cwd "#{node['wgisrv']['was_dir']}/bin"
-  user node['wgisrv']['nc_act']
-  group node['wgisrv']['nc_grp']
+stop_server 'stop server' do
   action :run
 end
 
