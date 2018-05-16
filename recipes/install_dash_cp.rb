@@ -1,4 +1,5 @@
-stop_server 'stop server' do
+stop_server 'stop server install dash' do
+  only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   action :run
 end
 
@@ -13,5 +14,6 @@ execute 'dash_cp_5' do
   cwd "#{node['wgisrv']['in_dir']}/3.1.3.0CumulativePatch005"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
+  sensitive true
   action :run
 end

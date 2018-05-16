@@ -13,7 +13,8 @@ template "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init" do
 end
 
 ## restart JazzSM/Dash Server
-stop_server 'stop server' do
+stop_server 'stop server jre free' do
+  only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   action :run
 end
 # start wg
@@ -22,5 +23,6 @@ execute 'start_wg_jre' do
   cwd "#{node['wgisrv']['was_dir']}/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
+  not_if { File.exist?(node['wgisrv']['jaz_pid']) }
   action :run
 end

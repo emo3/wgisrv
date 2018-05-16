@@ -5,6 +5,7 @@ default['wgisrv']['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
 default['wgisrv']['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
 default['wgisrv']['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
 default['wgisrv']['jaz_dir']   = "#{node['wgisrv']['app_dir']}/JazzSM"
+default['wgisrv']['jaz_pid']   = "#{node['wgisrv']['jaz_dir']}/profile/logs/server1/server1.pid"
 default['wgisrv']['temp_dir']  = '/tmp'
 default['wgisrv']['media_url'] = 'http://10.1.1.30/media'
 default['wgisrv']['nc_act']    = 'netcool'
