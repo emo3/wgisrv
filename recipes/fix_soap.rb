@@ -1,8 +1,12 @@
 # make a backup copy
-file "#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig" do
-  content IO.read("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props")
-  not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig") }
-  action :create
+stop_server 'copy soap' do
+  only_if { File.exist?(node['wgisrv']['jaz_pid']) }
+  action :run
+end
+
+copy_file 'copy soap' do
+  old_file "#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props"
+  action :run
 end
 
 # fix Soap properties to not be prompted for password(s)

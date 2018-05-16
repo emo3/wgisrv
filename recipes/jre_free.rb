@@ -5,10 +5,9 @@ template '/etc/profile.d/java.sh' do
 end
 
 # make a backup copy
-file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig" do
-  content IO.read("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init")
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
-  action :create
+copy_file 'copy server' do
+  old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init"
+  action :run
 end
 
 # change server.init
