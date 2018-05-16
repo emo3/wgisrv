@@ -7,7 +7,9 @@ end
 # make a backup copy
 copy_file 'copy server' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init"
-  action :run
+  file_ext '.bak'
+  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
+  action :copy
 end
 
 # change server.init
@@ -34,4 +36,13 @@ execute 'start_wg_jre' do
   not_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
   action :run
+end
+
+# rename file
+copy_file 'rename server' do
+  old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init"
+  file_ext '.bak'
+  file_ext1 '.orig'
+  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
+  action :move
 end
