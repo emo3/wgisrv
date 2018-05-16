@@ -15,5 +15,6 @@ execute 'dash_cp_5' do
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   sensitive true
+  not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/ui/Patches/3.1.3.0_201712110242/rollbackPatch.sh") }
   action :run
 end
