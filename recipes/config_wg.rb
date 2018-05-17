@@ -34,7 +34,7 @@ end
 
 # rename WebGUI
 copy_file 'rename WebGUI' do
-  old_file "#{node['wgisrv']['ng_dir']}/properties/sdk/newProfileDefaultSDK.properties"
+  old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties"
   file_ext '.bak'
   file_ext1 '.orig'
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }

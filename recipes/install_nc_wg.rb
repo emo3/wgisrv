@@ -21,6 +21,12 @@ execute 'install_wg' do
   action :run
 end
 
+# create shell variable for WebGUI
+template '/etc/profile.d/webgui.sh' do
+  source 'webgui.sh.erb'
+  mode 0755
+end
+
 # remove silent install file
 file "#{node['wgisrv']['temp_dir']}/wg.xml" do
   action :delete

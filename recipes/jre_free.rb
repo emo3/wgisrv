@@ -35,7 +35,7 @@ execute 'start_wg_jre' do
   group node['wgisrv']['nc_grp']
   not_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
-  action :run
+  action :nothing
 end
 
 # rename file
