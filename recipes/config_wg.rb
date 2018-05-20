@@ -5,6 +5,13 @@ hostsfile_entry node['OSP'] do
   unique   true
 end
 
+# set the IP and database name
+hostsfile_entry node['DSP'] do
+  hostname node['DS']
+  action   :create
+  unique   true
+end
+
 # make backup copy of WebGUI
 copy_file 'copy WebGUI' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties"
