@@ -17,7 +17,7 @@ template "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
     instance: node['wgisrv']['instance'],
     owner: node['wgisrv']['nc_act']
   )
-  # not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
+  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/sqllib/db2dump") }
 end
 
 # install DB2 client
@@ -28,7 +28,11 @@ execute 'install_db2_client' do
   cwd "#{node['wgisrv']['in_dir']}/db2c/client"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  # sensitive true
-  # not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/ui/Patches/3.1.3.0_201712110242/rollbackPatch.sh") }
+  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/sqllib/db2dump") }
   action :run
+end
+
+# remove response file
+file "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
+  action :nothing
 end

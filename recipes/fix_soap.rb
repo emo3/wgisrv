@@ -1,6 +1,7 @@
 # make a backup copy
 stop_server 'copy soap' do
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
+  not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig") }
   action :run
 end
 
