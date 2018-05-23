@@ -36,3 +36,10 @@ end
 file "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
   action :nothing
 end
+
+# update netcool account bash profile
+template "/home/#{node['wgisrv']['nc_act']}/.bash_profile" do
+  source 'nc_bash_profile.erb'
+  user node['wgisrv']['nc_act']
+  group node['wgisrv']['nc_grp']
+end
