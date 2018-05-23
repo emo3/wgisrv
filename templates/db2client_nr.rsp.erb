@@ -1,0 +1,20 @@
+*-----------------------------------------------------
+* Generated response file used by the DB2 Setup wizard
+*-----------------------------------------------------
+*  Product Installation
+LIC_AGREEMENT       = ACCEPT
+PROD       = CLIENT
+FILE       = <%= @sqllib_dir %>
+INSTALL_TYPE       = TYPICAL
+* ----------------------------------------------
+*  Instance properties
+* ----------------------------------------------
+INSTANCE       = <%= @instance %>
+<%= @instance %>.TYPE       = client
+*  Instance-owning user
+<%= @instance %>.NAME       = <%= @owner %>
+<%= @instance %>.START_DURING_INSTALL       = NO
+*-----------------------------------------------
+*  Installed Languages
+*-----------------------------------------------
+LANG       = EN
