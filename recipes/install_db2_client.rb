@@ -13,7 +13,7 @@ template "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   variables(
-    sqllib_dir: "#{node['wgisrv']['ng_dir']}/sqllib",
+    sqllib_dir: "/home/#{node['wgisrv']['nc_act']}/sqllib",
     instance: node['wgisrv']['instance'],
     owner: node['wgisrv']['nc_act']
   )
