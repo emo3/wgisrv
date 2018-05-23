@@ -14,7 +14,8 @@ filelist = {
   '06' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part1.zip', 'atype' => 'z', 'ifile' => 'repository.config' },
   '07' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part2.zip', 'atype' => 'z', 'ifile' => 'native/com.ibm.was.shortcuts.linux_8.0.0.201706270952.zip' },
   '08' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part3.zip', 'atype' => 'z', 'ifile' => 'native/com.ibm.websphere.embed.JDK8.32bit.jre_002_linux.ppc32_x_8.0.4005.201706261127.zip' },
-  '09' => { 'ipath' => "#{node['wgisrv']['in_dir']}/db2c", 'fname' => 'v10.5fp9_linuxx64_client.tar.gz', 'atype' => 'g', 'ifile' => 'repository.config' },
+  '09' => { 'ipath' => "#{node['wgisrv']['in_dir']}/java8", 'fname' => '8.0.4.5-WS-IBMWASJAVA-Linux.zip', 'atype' => 'z', 'ifile' => 'repository.config' },
+  '10' => { 'ipath' => "#{node['wgisrv']['in_dir']}/db2c", 'fname' => 'v10.5fp9_linuxx64_client.tar.gz', 'atype' => 'g', 'ifile' => 'client/db2_install' },
 }
 
 filelist.each do |_fn, fv|
