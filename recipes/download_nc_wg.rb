@@ -1,10 +1,11 @@
-# copy cp1 - cp5
-# copy java 8
+# copy cp5
 # copy wg 8.1.4
 # copy wgfp 8.1.12
-# copy wasfp 8.5.5.12
 # copy jazz4sm 1.1.3.0
-# Download the cp files
+# copy wasfp 8.5.5.12
+# copy java 8
+# copy db2 client
+# copy tcr
 filelist = {
   '01' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => '1.1.3.0-TIV-JazzSM-DASH-Cumulative-Patch-0005.zip', 'ifile' => '3.1.3.0CumulativePatch005/applyPatch.sh' },
   '02' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wg", 'fname' => 'OMNIbus-v8.1.0.4-WebGUI.linux64.zip', 'ifile' => 'OMNIbusWebGUIRepository/repository.config' },
@@ -16,6 +17,7 @@ filelist = {
   '08' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part3.zip', 'ifile' => 'native/com.ibm.websphere.embed.JDK8.32bit.jre_002_linux.ppc32_x_8.0.4005.201706261127.zip' },
   '09' => { 'ipath' => "#{node['wgisrv']['in_dir']}/java8", 'fname' => '8.0.4.5-WS-IBMWASJAVA-Linux.zip', 'ifile' => 'repository.config' },
   '10' => { 'ipath' => "#{node['wgisrv']['in_dir']}/db2c", 'fname' => 'v10.5fp9_linuxx64_client.tar.gz', 'ifile' => 'client/db2_install' },
+  '11' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => 'ITCR_3.1.3.0_FOR_LINUX.tar.gz', 'ifile' => 'TCRCognos/build.txt' },
 }
 
 filelist.each do |_fn, fv|

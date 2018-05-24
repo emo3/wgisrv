@@ -1,7 +1,0 @@
-# copy cp1 - cp5
-# copy java 8
-# copy wg 8.1.4
-# copy wgfp 8.1.12
-# copy wasfp 8.5.5.12
-# copy jazz4sm 1.1.3.0
-. $HOME/sqllib/db2profile
