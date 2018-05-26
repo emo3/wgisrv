@@ -10,6 +10,7 @@ default['wgisrv']['temp_dir']  = '/tmp'
 default['wgisrv']['media_url'] = 'http://10.1.1.30/media'
 default['wgisrv']['nc_act']    = 'netcool'
 default['wgisrv']['nc_grp']    = 'ncoadmin'
+default['wgisrv']['nc_home']   = "/home/#{node['wgisrv']['nc_act']}"
 default['wgisrv']['root_pwd']  = 'nc0Adm1n'
 default['wgisrv']['was_act']   = 'smadmin'
 default['wgisrv']['was_epwd']  = 'AjEXH/Rc1xpV0MEsp3EhHQ=='

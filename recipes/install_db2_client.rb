@@ -1,12 +1,3 @@
-# make sure the $HOME dir of netcool accout is 755
-directory "/home/#{node['wgisrv']['nc_act']}" do
-  recursive true
-  user node['wgisrv']['nc_act']
-  group node['wgisrv']['nc_grp']
-  mode '0755'
-  action :nothing
-end
-
 package %w(pam.i686)
 
 # create silent response file
@@ -15,7 +6,7 @@ template "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   variables(
-    sqllib_dir: "/home/#{node['wgisrv']['nc_act']}/sqllib",
+    sqllib_dir: "#{node['wgisrv']['nc_home']}/sqllib",
     instance: node['wgisrv']['instance'],
     owner: node['wgisrv']['nc_act']
   )
@@ -40,7 +31,7 @@ file "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
 end
 
 # update netcool account bash profile
-template "/home/#{node['wgisrv']['nc_act']}/.bash_profile" do
+template "#{node['wgisrv']['nc_home']}/.bash_profile" do
   source 'nc_bash_profile.erb'
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
@@ -52,9 +43,9 @@ template "#{node['wgisrv']['temp_dir']}/catalog.sql" do
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   variables(
-    node: 'TDWNODE',
-    server: node['DS'],
-    port: '60008',
+    dbnode: 'TDWNODE',
+    dbserver: node['DS'],
+    dbport: '60008',
     tcr_db: 'TCRDB',
     rpt_db: 'REPORTER'
   )
@@ -62,16 +53,16 @@ end
 
 # run DB2 sql commands
 execute 'db2_catalog' do
-  command "~/sqllib/bin/db2 \
-  -tmf #{node['wgisrv']['temp_dir']}catalog.sql"
-  cwd '~/sqllib/bin'
+  command "#{node['wgisrv']['nc_home']}/sqllib/bin/db2 \
+  -tmf #{node['wgisrv']['temp_dir']}/catalog.sql"
+  cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   action :run
 end
 
 # remove sql file
-file "#{node['wgisrv']['temp_dir']}catalog.sql" do
+file "#{node['wgisrv']['temp_dir']}/catalog.sql" do
   action :delete
 end
 
@@ -82,21 +73,22 @@ template "#{node['wgisrv']['temp_dir']}/tcr.sql" do
   group node['wgisrv']['nc_grp']
   variables(
     tcr_db: 'TCRDB',
-    tcr_user: 'tcr001'
+    tcr_user: 'tcr001',
+    tcr_pwd: 'P@$$w0rd'
   )
 end
 
 # run DB2 sql commands to create content store
 execute 'db2_tcr' do
-  command "~/sqllib/bin/db2 \
-  -tmf #{node['wgisrv']['temp_dir']}tcr.sql"
-  cwd '~/sqllib/bin'
+  command "#{node['wgisrv']['nc_home']}/sqllib/bin/db2 \
+  -tmf #{node['wgisrv']['temp_dir']}/tcr.sql"
+  cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  action :run
+  action :nothing
 end
 
 # remove sql file
-file "#{node['wgisrv']['temp_dir']}tcr.sql" do
-  action :delete
+file "#{node['wgisrv']['temp_dir']}/tcr.sql" do
+  action :nothing
 end
