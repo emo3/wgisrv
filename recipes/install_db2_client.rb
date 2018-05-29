@@ -74,7 +74,7 @@ template "#{node['wgisrv']['temp_dir']}/tcr.sql" do
   variables(
     tcr_db: 'TCRDB',
     tcr_user: 'tcr001',
-    tcr_pwd: 'P@$$w0rd'
+    tcr_pwd: 'P@ssw0rd'
   )
 end
 

@@ -1,4 +1,4 @@
-node.default['nc_base']['cots_dir'] = '/sfcots'
+node.default['nc_base']['cots_dir'] = '/cots'
 node.default['nc_base']['app_dir']  = "#{node['nc_base']['cots_dir']}/apps"
 include_recipe 'nc_base::create_nc_acct'
 include_recipe 'nc_base::nc_filesystem'

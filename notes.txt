@@ -1,0 +1,5 @@
+# do as netcool user
+cd /sfcots/apps/install/TCRCognos/ContentStoreDatabase
+./TCR_generate_content_store_db2_definition.sh TCRDB omni01
+db2 -vtf tcr_create_db2_cs.sql
+sudo yum -y install motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686
