@@ -1,0 +1,103 @@
+<agent-input>
+  <variables>
+    <variable name='sharedLocation' value='/cots/apps/IMShared'/>
+    <!-- Installation location for: -->
+    <!--   Jazz for Service Management extension for IBM WebSphere 8.5 -->
+    <!--   IBM WebSphere Application Server -->
+    <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
+    <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
+    <variable name='installLocation.IBM_WebSphere_Application_Server_V8.5' value='/cots/apps/WebSphere/AppServer'/>
+    <!-- Installation location for: -->
+    <!--   Reporting Services -->
+    <!--   IBM Dashboard Application Services Hub -->
+    <variable name='installLocation.Core_services_in_Jazz_for_Service_Management' value='/cots/apps/JazzSM'/>
+    <!-- Installation location for IBM Tivoli Netcool/OMNIbus Web GUI -->
+    <variable name='installLocation.IBM_Netcool_GUI_Components' value='/cots/apps/netcool'/>
+  </variables>
+  <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
+  <server>
+    <repository location='file:/cots/apps/install/j4sm/JazzSMRepository/disk1/'/>
+    <repository location='file:/cots/apps/install/wasfp/'/>
+    <repository location='file:/cots/apps/install/was4j/WASRepository/disk1/'/>
+    <repository location='file:/cots/apps/install/java8/'/>
+    <repository location='file:/cots/apps/install/wgfp/OMNIbusWebGUIRepository/composite/'/>
+  </server>
+  <profile id='IBM WebSphere Application Server V8.5' installLocation='${installLocation.IBM_WebSphere_Application_Server_V8.5}'>
+    <data key='cic.selector.arch' value='x86'/>
+    <!-- Common Data: -->
+    <data key='user.wasjava' value='java8'/>
+    <data key='user.internal.use.only.prev.wasjava' value='java8'/>
+  </profile>
+  <install>
+    <!-- Jazz for Service Management extension for IBM WebSphere 8.5 1.1.2.1 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.tivoli.tacct.psc.install.was85.extension' version='1.1.2001.20160606-1749' features='main.feature'/>
+    <!-- IBM WebSphere Application Server 8.5.5.12 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.BASE.v85' version='8.5.5012.20170627_1018' features='com.ibm.sdk.6_64bit,core.feature,ejbdeploy,embeddablecontainer,thinclient'/>
+    <!-- IBM WebSphere SDK Java Technology Edition (Optional) 7.0.9.30 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v70' version='7.0.9030.20160224_1826' features='com.ibm.sdk.7'/>
+    <!-- IBM WebSphere SDK Java Technology Edition (Optional) 8.0.4.5 -->
+    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v80' version='8.0.4005.20170626_0627' features='com.ibm.sdk.8'/>
+  </install>
+  <profile id='Core services in Jazz for Service Management' installLocation='${installLocation.Core_services_in_Jazz_for_Service_Management}'>
+    <data key='cic.selector.arch' value='x86_64'/>
+    <data key='user.BOOTSTRAP_ADDRESS' value='16312'/>
+    <data key='user.CSIV2_SSL_MUTUALAUTH_LISTENER_ADDRESS' value='16322'/>
+    <data key='user.SOAP_CONNECTOR_ADDRESS' value='16313'/>
+    <data key='user.CSIV2_SSL_SERVERAUTH_LISTENER_ADDRESS' value='16323'/>
+    <data key='user.DCS_UNICAST_ADDRESS' value='16318'/>
+    <data key='user.IPC_CONNECTOR_ADDRESS' value='16314'/>
+    <data key='user.ORB_LISTENER_ADDRESS' value='16320'/>
+    <data key='user.WC_defaulthost_secure' value='16311'/>
+    <data key='user.REST_NOTIFICATION_PORT' value='16324'/>
+    <data key='user.WC_defaulthost' value='16310'/>
+    <data key='user.WC_adminhost_secure' value='16316'/>
+    <data key='user.SAS_SSL_SERVERAUTH_LISTENER_ADDRESS' value='16321'/>
+    <data key='user.WC_adminhost' value='16315'/>
+    <data key='user.TIP_CONTEXT_ROOT' value='/ibm/console'/>
+    <data key='user.WAS_HOME' value='/cots/apps/WebSphere/AppServer'/>
+    <data key='user.CREATE_NEW_WAS_PROFILE' value='false'/>
+    <data key='user.WAS_PROFILE_PATH' value='/cots/apps/JazzSM/profile'/>
+    <data key='user.WAS_PROFILE_NAME' value='JazzSMProfile'/>
+    <data key='user.WAS_HOST_NAME' value='eag'/>
+    <data key='user.WAS_SERVER_NAME' value='server1'/>
+    <data key='user.WAS_NODE' value='JazzSMNode01'/>
+    <data key='user.WAS_USER_NAME' value='smadmin'/>
+    <data key='user.WAS_CELL' value='JazzSMNode01Cell'/>
+    <!-- Data for Reporting Services: -->
+    <data key='user.DB_DROP_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='normal'/>
+    <data key='user.DB_JDBC_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='DB2'/>
+    <data key='user.DB_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='TCRDB'/>
+    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://ead:60008/TCRDB'/>
+    <data key='user.DB_USER_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='tcr001'/>
+    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='ead'/>
+    <data key='user.verifyCredentials,com.ibm.tivoli.tacct.psc.install.reporting.services' value='false'/>
+    <data key='user.DB_JDBC_PORT,com.ibm.tivoli.tacct.psc.install.reporting.services' value='60008'/>
+    <data key='user.COGNOS_IMG_LOCATION,com.ibm.tivoli.tacct.psc.install.reporting.services' value='/cots/apps/install/TCRCognos'/>
+  </profile>
+  <install>
+    <!-- Reporting Services 3.1.3.0 -->
+    <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.install.reporting.services' version='3.1.3000.20160606-1749' features='com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.config,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.install,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.schema.install,com.ibm.tivoli.tacct.psc.install.server.feature.config.files,com.ibm.tivoli.tacct.psc.reporting.services.install.ant.wrapper.feature'/>
+    <!-- IBM Dashboard Application Services Hub 3.1.3.0 -->
+    <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.tip.install' version='3.1.3000.20160606-1749' features='com.ibm.tivoli.tacct.psc.install.server.feature.tip.config,com.ibm.tivoli.tacct.psc.install.server.feature.tip.install'/>
+  </install>
+  <profile id='IBM Netcool GUI Components' installLocation='${installLocation.IBM_Netcool_GUI_Components}'>
+    <data key='cic.selector.arch' value='x86_64'/>
+    <!-- JazzSM UI directory -->
+    <data key='user.DashHomeDir' value='/cots/apps/JazzSM/ui'/>
+    <!-- WAS directory -->
+    <data key='user.WasHomeDir' value='/cots/apps/WebSphere/AppServer'/>
+    <!-- User ID -->
+    <data key='user.DashHomeUserID' value='smadmin'/>
+    <data key='user.DashHomeContextRoot' value='/ibm/console'/>
+    <data key='user.DashHomeWasCell' value='JazzSMNode01Cell'/>
+    <data key='user.DashHomeWasNode' value='JazzSMNode01'/>
+    <!-- Server name -->
+    <data key='user.DashHomeWasServerName' value='server1'/>
+    <!-- Password -->
+    <data key='user.DashHomePwd' value='****'/>
+  </profile>
+  <install>
+    <!-- IBM Tivoli Netcool/OMNIbus Web GUI 8.1.0.12 -->
+    <offering profile='IBM Netcool GUI Components' id='com.ibm.tivoli.netcool.omnibus.webgui' version='8.1.12.201712140056' features='VMM.feature,WebGUI.feature'/>
+  </install>
+</agent-input>
