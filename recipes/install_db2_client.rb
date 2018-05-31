@@ -65,30 +65,3 @@ end
 file "#{node['wgisrv']['temp_dir']}/catalog.sql" do
   action :delete
 end
-
-# create TCR content store sql
-template "#{node['wgisrv']['temp_dir']}/tcr.sql" do
-  source 'tcr.sql.erb'
-  user node['wgisrv']['nc_act']
-  group node['wgisrv']['nc_grp']
-  variables(
-    tcr_db: 'TCRDB',
-    tcr_user: 'tcr001',
-    tcr_pwd: 'P@ssw0rd'
-  )
-end
-
-# run DB2 sql commands to create content store
-execute 'db2_tcr' do
-  command "#{node['wgisrv']['nc_home']}/sqllib/bin/db2 \
-  -tmf #{node['wgisrv']['temp_dir']}/tcr.sql"
-  cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
-  user node['wgisrv']['nc_act']
-  group node['wgisrv']['nc_grp']
-  action :nothing
-end
-
-# remove sql file
-file "#{node['wgisrv']['temp_dir']}/tcr.sql" do
-  action :nothing
-end
