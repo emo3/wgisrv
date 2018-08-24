@@ -1,26 +1,26 @@
 <agent-input>
   <variables>
-    <variable name='sharedLocation' value='/cots/apps/IMShared'/>
+    <variable name='sharedLocation' value='<%= node['wgisrv']['shr_dir'] %>'/>
     <!-- Installation location for: -->
     <!--   Jazz for Service Management extension for IBM WebSphere 8.5 -->
     <!--   IBM WebSphere Application Server -->
     <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
     <!--   IBM WebSphere SDK Java Technology Edition (Optional) -->
-    <variable name='installLocation.IBM_WebSphere_Application_Server_V8.5' value='/cots/apps/WebSphere/AppServer'/>
+    <variable name='installLocation.IBM_WebSphere_Application_Server_V8.5' value='<%= node['wgisrv']['was_dir'] %>'/>
     <!-- Installation location for: -->
     <!--   Reporting Services -->
     <!--   IBM Dashboard Application Services Hub -->
-    <variable name='installLocation.Core_services_in_Jazz_for_Service_Management' value='/cots/apps/JazzSM'/>
+    <variable name='installLocation.Core_services_in_Jazz_for_Service_Management' value='<%= node['wgisrv']['jaz_dir'] %>'/>
     <!-- Installation location for IBM Tivoli Netcool/OMNIbus Web GUI -->
-    <variable name='installLocation.IBM_Netcool_GUI_Components' value='/cots/apps/netcool'/>
+    <variable name='installLocation.IBM_Netcool_GUI_Components' value='<%= node['wgisrv']['ng_dir'] %>'/>
   </variables>
   <preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='${sharedLocation}'/>
   <server>
-    <repository location='file:/cots/apps/install/j4sm/JazzSMRepository/disk1/'/>
-    <repository location='file:/cots/apps/install/wasfp/'/>
-    <repository location='file:/cots/apps/install/was4j/WASRepository/disk1/'/>
-    <repository location='file:/cots/apps/install/java8/'/>
-    <repository location='file:/cots/apps/install/wgfp/OMNIbusWebGUIRepository/composite/'/>
+    <repository location='file:<%= node['wgisrv']['in_dir'] %>/j4sm/JazzSMRepository/disk1/'/>
+    <repository location='file:<%= node['wgisrv']['in_dir'] %>/wasfp/'/>
+    <repository location='file:<%= node['wgisrv']['in_dir'] %>/was4j/WASRepository/disk1/'/>
+    <repository location='file:<%= node['wgisrv']['in_dir'] %>/java8/'/>
+    <repository location='file:<%= node['wgisrv']['in_dir'] %>/wgfp/OMNIbusWebGUIRepository/composite/'/>
   </server>
   <profile id='IBM WebSphere Application Server V8.5' installLocation='${installLocation.IBM_WebSphere_Application_Server_V8.5}'>
     <data key='cic.selector.arch' value='x86'/>
@@ -40,6 +40,7 @@
   </install>
   <profile id='Core services in Jazz for Service Management' installLocation='${installLocation.Core_services_in_Jazz_for_Service_Management}'>
     <data key='cic.selector.arch' value='x86_64'/>
+    <!-- Common Data: -->
     <data key='user.BOOTSTRAP_ADDRESS' value='16312'/>
     <data key='user.CSIV2_SSL_MUTUALAUTH_LISTENER_ADDRESS' value='16322'/>
     <data key='user.SOAP_CONNECTOR_ADDRESS' value='16313'/>
@@ -54,25 +55,27 @@
     <data key='user.SAS_SSL_SERVERAUTH_LISTENER_ADDRESS' value='16321'/>
     <data key='user.WC_adminhost' value='16315'/>
     <data key='user.TIP_CONTEXT_ROOT' value='/ibm/console'/>
-    <data key='user.WAS_HOME' value='/cots/apps/WebSphere/AppServer'/>
+    <data key='user.WAS_HOME' value='<%= node['wgisrv']['was_dir'] %>'/>
     <data key='user.CREATE_NEW_WAS_PROFILE' value='false'/>
-    <data key='user.WAS_PROFILE_PATH' value='/cots/apps/JazzSM/profile'/>
+    <data key='user.WAS_PROFILE_PATH' value='<%= node['wgisrv']['jaz_dir'] %>/profile'/>
     <data key='user.WAS_PROFILE_NAME' value='JazzSMProfile'/>
-    <data key='user.WAS_HOST_NAME' value='eag'/>
+    <data key='user.WAS_HOST_NAME' value='<%= node['GS'] %>'/>
     <data key='user.WAS_SERVER_NAME' value='server1'/>
     <data key='user.WAS_NODE' value='JazzSMNode01'/>
-    <data key='user.WAS_USER_NAME' value='smadmin'/>
+    <data key='user.WAS_USER_NAME' value='<%= node['wgisrv']['was_act'] %>'/>
+    <data key='user.WAS_PASSWORD' value='<%= node['wgisrv']['was_epwd'] %>'/>
     <data key='user.WAS_CELL' value='JazzSMNode01Cell'/>
     <!-- Data for Reporting Services: -->
     <data key='user.DB_DROP_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='normal'/>
     <data key='user.DB_JDBC_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='DB2'/>
-    <data key='user.DB_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='TCRDB'/>
-    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://ead:60008/TCRDB'/>
-    <data key='user.DB_USER_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='tcr001'/>
-    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='ead'/>
+    <data key='user.DB_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_db'] %>'/>
+    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://<%= node['DS'] %>:<%= node['wgisrv']['db2_port'] %>/<%= node['wgisrv']['db2_db'] %>'/>
+    <data key='user.DB_USER_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_act'] %>'/>
+    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['DS'] %>'/>
     <data key='user.verifyCredentials,com.ibm.tivoli.tacct.psc.install.reporting.services' value='false'/>
-    <data key='user.DB_JDBC_PORT,com.ibm.tivoli.tacct.psc.install.reporting.services' value='60008'/>
-    <data key='user.COGNOS_IMG_LOCATION,com.ibm.tivoli.tacct.psc.install.reporting.services' value='/cots/apps/install/TCRCognos'/>
+    <data key='user.DB_JDBC_PORT,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_port'] %>'/>
+    <data key='user.DB_PASSWORD,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_epwd'] %>'/>
+    <data key='user.COGNOS_IMG_LOCATION,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['in_dir'] %>/TCRCognos'/>
   </profile>
   <install>
     <!-- Reporting Services 3.1.3.0 -->
@@ -83,18 +86,18 @@
   <profile id='IBM Netcool GUI Components' installLocation='${installLocation.IBM_Netcool_GUI_Components}'>
     <data key='cic.selector.arch' value='x86_64'/>
     <!-- JazzSM UI directory -->
-    <data key='user.DashHomeDir' value='/cots/apps/JazzSM/ui'/>
+    <data key='user.DashHomeDir' value='<%= node['wgisrv']['jaz_dir'] %>/ui'/>
     <!-- WAS directory -->
-    <data key='user.WasHomeDir' value='/cots/apps/WebSphere/AppServer'/>
+    <data key='user.WasHomeDir' value='<%= node['wgisrv']['was_dir'] %>'/>
     <!-- User ID -->
-    <data key='user.DashHomeUserID' value='smadmin'/>
+    <data key='user.DashHomeUserID' value='<%= node['wgisrv']['was_act'] %>'/>
     <data key='user.DashHomeContextRoot' value='/ibm/console'/>
     <data key='user.DashHomeWasCell' value='JazzSMNode01Cell'/>
     <data key='user.DashHomeWasNode' value='JazzSMNode01'/>
     <!-- Server name -->
     <data key='user.DashHomeWasServerName' value='server1'/>
     <!-- Password -->
-    <data key='user.DashHomePwd' value='****'/>
+    <data key='user.DashHomePwd' value='<%= node['wgisrv']['dash_pwd'] %>'/>
   </profile>
   <install>
     <!-- IBM Tivoli Netcool/OMNIbus Web GUI 8.1.0.12 -->
