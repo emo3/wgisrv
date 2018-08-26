@@ -58,7 +58,7 @@ execute 'db2_catalog' do
   cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  # not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
   action :run
 end
 

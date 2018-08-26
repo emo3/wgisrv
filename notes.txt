@@ -6,9 +6,11 @@ sudo yum -y install motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686
 db2 connect to tcrdb
 db2 list node directory
 db2 list db directory
+db2 connect to tcrdb user tcr001 using P@ssw0rd
 db2 select schemaname from syscat.schemata
 db2 list tables for schema tcr001
 db2 list tables for schema tcrdb
 /cots/apps/JazzSM/profile/bin/stopServer.sh  server1
 /cots/apps/JazzSM/profile/bin/startServer.sh server1
 tail -f /cots/apps/JazzSM/profile/logs/server1/SystemOut.log
+/cots/apps/InstallationManager/eclipse/tools/imcl generateResponseFile > /tmp/rsp.xml
