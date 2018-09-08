@@ -14,14 +14,14 @@ lvm_physical_volume '/dev/sdb'
 
 #################################################################
 # Set volume group
-lvm_volume_group 'ncvg' do
+lvm_volume_group node['wgisrv']['lvg_name'] do
   physical_volumes ['/dev/sdb']
 end
 
 #################################################################
 # Set logical volume
 lvm_logical_volume 'lvnc' do
-  group 'ncvg'
+  group node['wgisrv']['lvg_name']
   size '60G'
   filesystem 'xfs'
   mount_point node['wgisrv']['app_dir']
