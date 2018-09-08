@@ -19,7 +19,7 @@ Also, tailor the subsections below:
 
 ### Platforms
 
-- RedHat 7.4+
+- RedHat 7.5+
 
 ### Chef
 

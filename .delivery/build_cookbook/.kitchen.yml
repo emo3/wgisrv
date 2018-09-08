@@ -11,7 +11,7 @@ provisioner:
   product_name: wgisrv
 
 platforms:
-  - name: centos-7.4
+  - name: centos-7.5
 
 suites:
   - name: default
