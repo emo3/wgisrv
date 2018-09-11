@@ -10,6 +10,7 @@ default['wgisrv']['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i
 default['wgisrv']['temp_dir']  = '/tmp'
 default['wgisrv']['media_url'] = 'http://10.1.1.30/media'
 default['wgisrv']['lvg_name']  = 'apmvg'
+default['wgisrv']['lv_name']   = 'lvnc'
 default['wgisrv']['nc_act']    = 'netcool'
 default['wgisrv']['nc_grp']    = 'ncoadmin'
 default['wgisrv']['nc_home']   = "/home/#{node['wgisrv']['nc_act']}"
