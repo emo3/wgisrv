@@ -44,7 +44,7 @@ template "#{node['wgisrv']['temp_dir']}/catalog.sql" do
   group node['wgisrv']['nc_grp']
   variables(
     dbnode: 'TDWNODE',
-    dbserver: node['DSP'],
+    dbserver: node['wgisrv']['DSP'],
     dbport: '60008',
     tcr_db: 'TCRDB',
     rpt_db: 'REPORTER'

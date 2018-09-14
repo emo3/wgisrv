@@ -1,15 +1,19 @@
-# set the IP and object server name
-hostsfile_entry node['OSP'] do
-  hostname node['OS']
-  action   :create
-  unique   true
+set_hostname 'set chefsrv server' do
+  action :run
 end
 
-# set the IP and database name
-hostsfile_entry node['DSP'] do
-  hostname node['DS']
-  action   :create
-  unique   true
+# set the IP and ObjServ name
+set_hostname 'set ObjSrv server' do
+  host_ip   node['wgisrv']['OSP']
+  host_name node['wgisrv']['OS']
+  action :run
+end
+
+# set the IP and Database name
+set_hostname 'set Database server' do
+  host_ip   node['wgisrv']['DSP']
+  host_name node['wgisrv']['DS']
+  action :run
 end
 
 # make backup copy of WebGUI

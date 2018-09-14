@@ -30,9 +30,3 @@ suites:
     verifier:
       inspec_tests:
         - test/integration/default
-    attributes:
-      GS: <%= ENV['GS'] %>
-      OS: <%= ENV['OS'] %>
-      OSP: <%= ENV['OSP'] %>
-      DS: <%= ENV['DS'] %>
-      DSP: <%= ENV['DSP'] %>

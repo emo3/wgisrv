@@ -8,21 +8,9 @@ directory node['wgisrv']['app_dir'] do
   action :create
 end
 
-#################################################################
-# Set physical volume
-lvm_physical_volume '/dev/sdb'
-
-#################################################################
-# Set volume group
-lvm_volume_group node['wgisrv']['lvg_name'] do
-  physical_volumes ['/dev/sdb']
-end
-
-#################################################################
-# Set logical volume
-lvm_logical_volume 'lvnc' do
-  group node['wgisrv']['lvg_name']
-  size '60G'
-  filesystem 'xfs'
-  mount_point node['wgisrv']['app_dir']
+create_xfs 'create netcool wg extra file system' do
+  lv_size   '60G'
+  lv_name   node['wgisrv']['lv_name']
+  mnt_point node['wgisrv']['app_dir']
+  action :run
 end

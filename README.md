@@ -23,14 +23,12 @@ Also, tailor the subsections below:
 
 ### Chef
 
-- Chef 12
+- Chef 12+
 
 ### Dependencies
 
-- lvm
-- limits
-- selinux
-- hostsfile
+depends 'nc_base', '~> 0.1.0'
+depends 'server_utils', '~> 0.1.0'
 
 ## Usage
 

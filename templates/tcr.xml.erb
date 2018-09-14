@@ -59,7 +59,7 @@
     <data key='user.CREATE_NEW_WAS_PROFILE' value='false'/>
     <data key='user.WAS_PROFILE_PATH' value='<%= node['wgisrv']['jaz_dir'] %>/profile'/>
     <data key='user.WAS_PROFILE_NAME' value='JazzSMProfile'/>
-    <data key='user.WAS_HOST_NAME' value='<%= node['GS'] %>'/>
+    <data key='user.WAS_HOST_NAME' value='<%= node['wgisrv']['GS'] %>'/>
     <data key='user.WAS_SERVER_NAME' value='server1'/>
     <data key='user.WAS_NODE' value='JazzSMNode01'/>
     <data key='user.WAS_USER_NAME' value='<%= node['wgisrv']['was_act'] %>'/>
@@ -69,9 +69,9 @@
     <data key='user.DB_DROP_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='normal'/>
     <data key='user.DB_JDBC_TYPE,com.ibm.tivoli.tacct.psc.install.reporting.services' value='DB2'/>
     <data key='user.DB_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_db'] %>'/>
-    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://<%= node['DS'] %>:<%= node['wgisrv']['db2_port'] %>/<%= node['wgisrv']['db2_db'] %>'/>
+    <data key='user.DB_CONN_URL,com.ibm.tivoli.tacct.psc.install.reporting.services' value='jdbc:db2://<%= node['wgisrv']['DS'] %>:<%= node['wgisrv']['db2_port'] %>/<%= node['wgisrv']['db2_db'] %>'/>
     <data key='user.DB_USER_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_act'] %>'/>
-    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['DS'] %>'/>
+    <data key='user.DB_JDBC_HOST_NAME,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['DS'] %>'/>
     <data key='user.verifyCredentials,com.ibm.tivoli.tacct.psc.install.reporting.services' value='false'/>
     <data key='user.DB_JDBC_PORT,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_port'] %>'/>
     <data key='user.DB_PASSWORD,com.ibm.tivoli.tacct.psc.install.reporting.services' value='<%= node['wgisrv']['db2_epwd'] %>'/>
