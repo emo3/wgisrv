@@ -28,16 +28,6 @@
     <data key='user.wasjava' value='java8'/>
     <data key='user.internal.use.only.prev.wasjava' value='java8'/>
   </profile>
-  <install>
-    <!-- Jazz for Service Management extension for IBM WebSphere 8.5 1.1.2.1 -->
-    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.tivoli.tacct.psc.install.was85.extension' version='1.1.2001.20160606-1749' features='main.feature'/>
-    <!-- IBM WebSphere Application Server 8.5.5.12 -->
-    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.BASE.v85' version='8.5.5012.20170627_1018' features='com.ibm.sdk.6_64bit,core.feature,ejbdeploy,embeddablecontainer,thinclient'/>
-    <!-- IBM WebSphere SDK Java Technology Edition (Optional) 7.0.9.30 -->
-    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v70' version='7.0.9030.20160224_1826' features='com.ibm.sdk.7'/>
-    <!-- IBM WebSphere SDK Java Technology Edition (Optional) 8.0.4.5 -->
-    <offering profile='IBM WebSphere Application Server V8.5' id='com.ibm.websphere.IBMJAVA.v80' version='8.0.4005.20170626_0627' features='com.ibm.sdk.8'/>
-  </install>
   <profile id='Core services in Jazz for Service Management' installLocation='${installLocation.Core_services_in_Jazz_for_Service_Management}'>
     <data key='cic.selector.arch' value='x86_64'/>
     <!-- Common Data: -->
@@ -80,8 +70,6 @@
   <install>
     <!-- Reporting Services 3.1.3.0 -->
     <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.install.reporting.services' version='3.1.3000.20160606-1749' features='com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.config,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.application.install,com.ibm.tivoli.tacct.psc.install.reporting.services.feature.schema.install,com.ibm.tivoli.tacct.psc.install.server.feature.config.files,com.ibm.tivoli.tacct.psc.reporting.services.install.ant.wrapper.feature'/>
-    <!-- IBM Dashboard Application Services Hub 3.1.3.0 -->
-    <offering profile='Core services in Jazz for Service Management' id='com.ibm.tivoli.tacct.psc.tip.install' version='3.1.3000.20160606-1749' features='com.ibm.tivoli.tacct.psc.install.server.feature.tip.config,com.ibm.tivoli.tacct.psc.install.server.feature.tip.install'/>
   </install>
   <profile id='IBM Netcool GUI Components' installLocation='${installLocation.IBM_Netcool_GUI_Components}'>
     <data key='cic.selector.arch' value='x86_64'/>

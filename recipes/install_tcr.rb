@@ -24,10 +24,10 @@ execute 'install-tcr' do
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   umask '022'
-  action :run
+  action :nothing
 end
 
 # remove silent install file
 file "#{node['wgisrv']['temp_dir']}/tcr.xml" do
-  action :delete
+  action :nothing
 end
