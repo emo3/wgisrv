@@ -19,7 +19,7 @@ Also, tailor the subsections below:
 
 ### Platforms
 
-- Redhat 7.6+
+- Redhat 7.x+
 
 ### Chef
 
