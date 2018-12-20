@@ -47,9 +47,9 @@ The change we'll use for an example is to install the `zsh` package. Write a fai
 require 'spec_helper'
 
 describe 'godzilla::default' do
-  context 'When all attributes are default, on RedHat 7.5' do
+  context 'When all attributes are default, on Redhat 7.6' do
     let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new(platform: 'redhat', version: '7.5')
+      runner = ChefSpec::ServerRunner.new(platform: 'redhat', version: '7.6')
       runner.converge(described_recipe)
     end
 
