@@ -1,20 +1,20 @@
-# copy cp5
+# copy cp?
 # copy wg 8.1.4
-# copy wgfp 8.1.14
+# copy wgfp 8.1.??
 # copy jazz4sm 1.1.3.0
-# copy wasfp 8.5.5.12
+# copy wasfp 8.5.5.??
 # copy java 8
 # copy db2 client
 # copy tcr
 filelist = {
-  '01' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => '1.1.3.0-TIV-JazzSM-DASH-Cumulative-Patch-0005.zip', 'ifile' => '3.1.3.0CumulativePatch005/applyPatch.sh', 'upack' => 'y' },
+  '01' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => '1.1.3.0-TIV-JazzSM-DASH-Cumulative-Patch-0007.zip', 'ifile' => '3.1.3.0CumulativePatch007/applyPatch.sh', 'upack' => 'y' },
   '02' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wg", 'fname' => 'OMNIbus-v8.1.0.4-WebGUI.linux64.zip', 'ifile' => 'OMNIbusWebGUIRepository/repository.config', 'upack' => 'y' },
-  '03' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wgfp", 'fname' => 'OMNIbus-v8.1.0-WebGUI-FP14-IM-Extensions-linux64-UpdatePack.zip', 'ifile' => 'OMNIbusWebGUIRepository/composite/repository.config', 'upack' => 'y' },
+  '03' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wgfp", 'fname' => 'OMNIbus-v8.1.0-WebGUI-FP15-IM-Extensions-linux64-UpdatePack.zip', 'ifile' => 'OMNIbusWebGUIRepository/composite/repository.config', 'upack' => 'y' },
   '04' => { 'ipath' => "#{node['wgisrv']['in_dir']}/j4sm", 'fname' => 'JAZZ_FOR_SM_1.1.3.0_FOR_LNX.zip', 'ifile' => 'JazzSMRepository/disk1/diskTag.inf', 'upack' => 'y' },
   '05' => { 'ipath' => "#{node['wgisrv']['in_dir']}/was4j", 'fname' => 'WAS_V8.5.5.9_FOR_JSM_FOR_LINUX_ML.zip', 'ifile' => 'WASRepository/disk1/diskTag.inf', 'upack' => 'y' },
-  '06' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part1.zip', 'ifile' => 'repository.config', 'upack' => 'y' },
-  '07' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part2.zip', 'ifile' => 'native/com.ibm.was.shortcuts.linux_8.0.0.201706270952.zip', 'upack' => 'y' },
-  '08' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP012-part3.zip', 'ifile' => 'native/com.ibm.websphere.embed.JDK8.32bit.jre_002_linux.ppc32_x_8.0.4005.201706261127.zip', 'upack' => 'y' },
+  '06' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP014-part1.zip', 'ifile' => 'repository.config', 'upack' => 'y' },
+  '07' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP014-part2.zip', 'ifile' => 'native/com.ibm.was.shortcuts.linux_8.0.0.201808020949.zip', 'upack' => 'y' },
+  '08' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP014-part3.zip', 'ifile' => 'native/com.ibm.websphere.embed.JDK8.32bit.jre_002_linux.ppc32_x_8.0.5017.201807270219.zip', 'upack' => 'y' },
   '09' => { 'ipath' => "#{node['wgisrv']['in_dir']}/java8", 'fname' => '8.0.4.5-WS-IBMWASJAVA-Linux.zip', 'ifile' => 'repository.config', 'upack' => 'y' },
   '10' => { 'ipath' => "#{node['wgisrv']['in_dir']}/db2c", 'fname' => 'v10.5fp9_linuxx64_client.tar.gz', 'ifile' => 'client/db2_install', 'upack' => 'y' },
   '11' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => 'ITCR_3.1.3.0_FOR_LINUX.tar.gz', 'ifile' => 'TCRCognos/build.txt', 'upack' => 'y' },
