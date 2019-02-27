@@ -4,15 +4,15 @@ stop_server 'stop server install dash' do
   action :run
 end
 
-# install Cumulative Patch number 5
-execute 'dash_cp_5' do
-  command "#{node['wgisrv']['in_dir']}/3.1.3.0CumulativePatch005/applyPatch.sh \
+# install Cumulative Patch number ?
+execute 'dash_cp' do
+  command "#{node['wgisrv']['in_dir']}/3.1.3.0CumulativePatch007/applyPatch.sh \
   -username #{node['wgisrv']['was_act']} \
   -password #{node['wgisrv']['dash_pwd']} \
   -dashHome #{node['wgisrv']['jaz_dir']}/ui \
   -servername server1 \
   -profilename profile"
-  cwd "#{node['wgisrv']['in_dir']}/3.1.3.0CumulativePatch005"
+  cwd "#{node['wgisrv']['in_dir']}/3.1.3.0CumulativePatch007"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   sensitive true
