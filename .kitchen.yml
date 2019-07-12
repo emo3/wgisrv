@@ -11,6 +11,9 @@ driver:
 
 provisioner:
   name: chef_zero
+  product_name: chef
+  product_version: <%= ENV['chef_release'] %>
+  install_strategy: always
   # You may wish to disable always updating cookbooks in CI or other testing environments.
   # For example:
   #   always_update_cookbooks: <%= !ENV['CI'] %>
@@ -20,7 +23,9 @@ verifier:
   name: inspec
 
 platforms:
-  - name: mycsc-7.6
+  - name: mynochef
+    provisioner:
+      download_url: http://10.1.1.30/media/chef-<%= ENV['chef_release'] %>-1.el7.x86_64.rpm
 
 suites:
   - name: wgisrv

@@ -9,7 +9,7 @@
 filelist = {
   '01' => { 'ipath' => node['wgisrv']['in_dir'], 'fname' => '1.1.3.0-TIV-JazzSM-DASH-Cumulative-Patch-0007.zip', 'ifile' => '3.1.3.0CumulativePatch007/applyPatch.sh', 'upack' => 'y' },
   '02' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wg", 'fname' => 'OMNIbus-v8.1.0.4-WebGUI.linux64.zip', 'ifile' => 'OMNIbusWebGUIRepository/repository.config', 'upack' => 'y' },
-  '03' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wgfp", 'fname' => 'OMNIbus-v8.1.0-WebGUI-FP15-IM-Extensions-linux64-UpdatePack.zip', 'ifile' => 'OMNIbusWebGUIRepository/composite/repository.config', 'upack' => 'y' },
+  '03' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wgfp", 'fname' => 'OMNIbus-v8.1.0-WebGUI-FP16-IM-Extensions-linux64-UpdatePack.zip', 'ifile' => 'OMNIbusWebGUIRepository/composite/repository.config', 'upack' => 'y' },
   '04' => { 'ipath' => "#{node['wgisrv']['in_dir']}/j4sm", 'fname' => 'JAZZ_FOR_SM_1.1.3.0_FOR_LNX.zip', 'ifile' => 'JazzSMRepository/disk1/diskTag.inf', 'upack' => 'y' },
   '05' => { 'ipath' => "#{node['wgisrv']['in_dir']}/was4j", 'fname' => 'WAS_V8.5.5.9_FOR_JSM_FOR_LINUX_ML.zip', 'ifile' => 'WASRepository/disk1/diskTag.inf', 'upack' => 'y' },
   '06' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wasfp", 'fname' => '8.5.5-WS-WAS-FP014-part1.zip', 'ifile' => 'repository.config', 'upack' => 'y' },
