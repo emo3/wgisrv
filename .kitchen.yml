@@ -6,6 +6,18 @@ driver:
     memory: <%= ENV['GSR'] %>
     cpus: <%= ENV['GSC'] %>
     name: <%= ENV['GS'] %>
+    createhd:
+      - filename: disk1.vmdk
+        size: <%= ENV['GSD'] %>
+    storagectl:
+      - name: SATA Controller
+        portcount: 1
+    storageattach:
+      - storagectl: SATA Controller
+        port: 1
+        device: 0
+        type: hdd
+        medium: disk1.vmdk
   network:
    - ['private_network', ip: <%= ENV['GSP'] %>]
 
