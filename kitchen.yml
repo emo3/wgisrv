@@ -25,11 +25,7 @@ provisioner:
   name: chef_zero
   product_name: chef
   product_version: <%= ENV['chef_release'] %>
-  install_strategy: always
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  # always_update_cookbooks: true
+  install_strategy: once
 
 verifier:
   name: inspec
@@ -48,3 +44,4 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      GSG: '<%= ENV['GSG'] %>'

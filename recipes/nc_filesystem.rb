@@ -9,7 +9,7 @@ directory node['wgisrv']['app_dir'] do
 end
 
 create_xfs 'create netcool wg extra file system' do
-  lv_size   '60G'
+  lv_size   node['GSG']
   lv_name   node['wgisrv']['lv_name']
   mnt_point node['wgisrv']['app_dir']
   action :run

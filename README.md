@@ -27,10 +27,19 @@ Also, tailor the subsections below:
 
 ### Dependencies
 
-depends 'nc_base', '~> 0.1.0'
-depends 'server_utils', '~> 0.1.0'
+depends 'nc_base'
+depends 'server_utils'
 
 ## Usage
+
+The following environmental variables must be defined:
+  GS  = web Gui Server Name: ncg
+  GSR = Ram for Server: 2048
+  GSC = CPUs for Server: 1
+  GSD = Disk Size for Server: 40960
+  GSP = Server IP: 10.1.1.41
+  chef_release = Version of Chef: 15.1.36
+  GSG = Disk Size in Gigs: 40G
 
 Todo: This will be unique depending on how the cookbook is developed and the
 tools it provides to configure nodes. Here's a simple example of using a
