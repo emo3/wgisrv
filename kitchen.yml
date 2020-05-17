@@ -1,14 +1,12 @@
 ---
 driver:
   name: vagrant
-  vm_hostname: <%= ENV['GS'] %>
   customize:
-    memory: <%= ENV['GSR'] %>
-    cpus: <%= ENV['GSC'] %>
-    name: <%= ENV['GS'] %>
+    memory: 4096
+    cpus: 1
     createhd:
       - filename: disk1.vmdk
-        size: <%= ENV['GSD'] %>
+        size: 40962
     storagectl:
       - name: SATA Controller
         portcount: 1
@@ -19,12 +17,12 @@ driver:
         type: hdd
         medium: disk1.vmdk
   network:
-   - ['private_network', ip: <%= ENV['GSP'] %>]
+   - ['private_network', ip: '10.1.1.42']
 
 provisioner:
   name: chef_zero
   product_name: chef
-  product_version: <%= ENV['chef_release'] %>
+  product_version: 15.9.17
   install_strategy: once
 
 verifier:
@@ -33,7 +31,7 @@ verifier:
 platforms:
   - name: mycentos7
     provisioner:
-      download_url: http://10.1.1.30/media/chef-<%= ENV['chef_release'] %>-1.el7.x86_64.rpm
+      download_url: http://10.1.1.30/media/chef-15.9.17-1.el7.x86_64.rpm
 
 suites:
   - name: wgisrv
@@ -43,5 +41,3 @@ suites:
     verifier:
       inspec_tests:
         - test/integration/default
-    attributes:
-      GSG: '<%= ENV['GSG'] %>'
