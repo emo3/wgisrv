@@ -1,33 +1,34 @@
-default['wgisrv']['cots_dir']  = '/cots'
-default['wgisrv']['app_dir']   = "#{node['wgisrv']['cots_dir']}/apps"
-default['wgisrv']['ng_dir']    = "#{node['wgisrv']['app_dir']}/netcool"
-default['wgisrv']['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
-default['wgisrv']['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
-default['wgisrv']['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
-default['wgisrv']['jaz_dir']   = "#{node['wgisrv']['app_dir']}/JazzSM"
-default['wgisrv']['jaz_pid']   = "#{node['wgisrv']['jaz_dir']}/profile/logs/server1/server1.pid"
-default['wgisrv']['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686)
-default['wgisrv']['temp_dir']  = '/tmp'
-default['wgisrv']['media_url'] = 'http://10.1.1.30/media'
-default['wgisrv']['lvg_name']  = 'apmvg'
-default['wgisrv']['lv_name']   = 'lvnc'
-default['wgisrv']['nc_act']    = 'netcool'
-default['wgisrv']['nc_grp']    = 'ncoadmin'
-default['wgisrv']['nc_home']   = "/home/#{node['wgisrv']['nc_act']}"
-default['wgisrv']['root_pwd']  = 'nc0Adm1n'
-default['wgisrv']['was_act']   = 'smadmin'
-default['wgisrv']['was_epwd']  = 'U4DQSKB8w2r6uZlbcdHAPQ=='
-default['wgisrv']['dash_pwd']  = 'P@ssw0rd'
-default['wgisrv']['instance']  = 'inst1'
-default['wgisrv']['db2_epwd']  = 'U4DQSKB8w2r6uZlbcdHAPQ=='
-default['wgisrv']['db2_port']  = '60008'
-default['wgisrv']['db2_act']   = 'tcr001'
-default['wgisrv']['db2_db']    = 'TCRDB'
-default['wgisrv']['ncoms']     = 'NCO'
-default['wgisrv']['os_port']   = '4100'
-default['wgisrv']['pa_port']   = '4200'
-default['wgisrv']['OS']        = 'eao'
-default['wgisrv']['OSP']       = '10.1.1.40'
-default['wgisrv']['GS']        = 'eag'
-default['wgisrv']['DS']        = 'ead'
-default['wgisrv']['DSP']       = '10.1.1.43'
+default['wgisrv'].tap do |wgs|
+  wgs['app_dir']   = '/apps'
+  wgs['ng_dir']    = "#{node['wgisrv']['app_dir']}/webgui"
+  obs['ng_home']   = '/home/webgui'
+  wgs['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
+  wgs['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
+  wgs['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
+  wgs['jaz_dir']   = "#{node['wgisrv']['app_dir']}/JazzSM"
+  wgs['jaz_pid']   = "#{node['wgisrv']['jaz_dir']}/profile/logs/server1/server1.pid"
+  wgs['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686)
+  wgs['temp_dir']  = '/tmp'
+  wgs['media_url'] = 'http://10.1.1.30/media'
+  wgs['lv_name']   = 'lvnc'
+  obs['lv_size']   = '40G'
+  wgs['nc_act']    = 'netcool'
+  wgs['nc_grp']    = 'ncoadmin'
+  wgs['root_pwd']  = 'nc0Adm1n'
+  wgs['was_act']   = 'smadmin'
+  wgs['was_epwd']  = 'U4DQSKB8w2r6uZlbcdHAPQ=='
+  wgs['dash_pwd']  = 'P@ssw0rd'
+  wgs['instance']  = 'inst1'
+  wgs['db2_epwd']  = 'U4DQSKB8w2r6uZlbcdHAPQ=='
+  wgs['db2_port']  = '60008'
+  wgs['db2_act']   = 'tcr001'
+  wgs['db2_db']    = 'TCRDB'
+  wgs['ncoms']     = 'NCO'
+  wgs['os_port']   = '4100'
+  wgs['pa_port']   = '4200'
+  wgs['OS']        = 'eao'
+  wgs['OSP']       = '10.1.1.40'
+  wgs['GS']        = 'eag'
+  wgs['DS']        = 'ead'
+  wgs['DSP']       = '10.1.1.43'
+end
