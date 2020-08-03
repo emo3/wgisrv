@@ -1,7 +1,7 @@
 default['wgisrv'].tap do |wgs|
   wgs['app_dir']   = '/apps'
   wgs['ng_dir']    = "#{node['wgisrv']['app_dir']}/webgui"
-  obs['ng_home']   = '/home/webgui'
+  wgs['ng_home']   = '/home/webgui'
   wgs['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
   wgs['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
   wgs['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
@@ -11,7 +11,7 @@ default['wgisrv'].tap do |wgs|
   wgs['temp_dir']  = '/tmp'
   wgs['media_url'] = 'http://10.1.1.30/media'
   wgs['lv_name']   = 'lvnc'
-  obs['lv_size']   = '40G'
+  wgs['lv_size']   = '40G'
   wgs['nc_act']    = 'netcool'
   wgs['nc_grp']    = 'ncoadmin'
   wgs['root_pwd']  = 'nc0Adm1n'
