@@ -1,11 +1,15 @@
 # make a backup copy
-stop_server 'copy soap' do
+stop_server 'stop_soap' do
+  server_cmd "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 \
+  -user #{node['wgisrv']['was_act']} \
+  -password #{node['wgisrv']['dash_pwd']} -quiet"
+  cmd_sensitive 'true'
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig") }
   action :run
 end
 
-copy_file 'copy soap' do
+copy_file 'copy_soap' do
   old_file "#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props"
   file_ext '.bak'
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig") }
@@ -33,7 +37,7 @@ execute 'encode_soap' do
   action :run
 end
 
-copy_file 'rename soap' do
+copy_file 'rename_soap' do
   old_file "#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props"
   file_ext '.bak'
   file_ext1 '.orig'

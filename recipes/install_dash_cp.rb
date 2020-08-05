@@ -1,4 +1,4 @@
-stop_server 'stop server install dash' do
+stop_server 'stop_server_install_dash' do
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/ui/Patches/3.1.3.0_201712110242/rollbackPatch.sh") }
   action :run

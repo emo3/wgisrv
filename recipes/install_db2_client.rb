@@ -1,16 +1,17 @@
 package %w(pam.i686)
 
+log "#{node['wgisrv']['ng_home']}/sqllib"
 # create silent response file
 template "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
   source 'db2client_nr.rsp.erb'
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   variables(
-    sqllib_dir: "#{node['wgisrv']['nc_home']}/sqllib",
+    sqllib_dir: node['wgisrv']['ng_home'],
     instance: node['wgisrv']['instance'],
     owner: node['wgisrv']['nc_act']
   )
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  not_if { File.exist?("#{node['wgisrv']['ng_home']}/sqllib/db2profile") }
 end
 
 # install DB2 client
@@ -19,9 +20,9 @@ execute 'install_db2_client' do
   -u #{node['wgisrv']['temp_dir']}/db2client_nr.rsp \
   -l #{node['wgisrv']['temp_dir']}/db2client.log"
   cwd "#{node['wgisrv']['in_dir']}/db2c/client"
-  user node['wgisrv']['nc_act']
+  user 'root'
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  not_if { File.exist?("#{node['wgisrv']['ng_home']}/sqllib/db2profile") }
   action :run
 end
 
@@ -31,7 +32,7 @@ file "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
 end
 
 # update netcool account bash profile
-template "#{node['wgisrv']['nc_home']}/.bash_profile" do
+template "#{node['wgisrv']['ng_home']}/.bash_profile" do
   source 'nc_bash_profile.erb'
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
@@ -53,12 +54,12 @@ end
 
 # run DB2 sql commands
 execute 'db2_catalog' do
-  command "#{node['wgisrv']['nc_home']}/sqllib/bin/db2 \
+  command "#{node['wgisrv']['ng_home']}/sqllib/bin/db2 \
   -tmf #{node['wgisrv']['temp_dir']}/catalog.sql"
-  cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
+  cwd "#{node['wgisrv']['ng_home']}/sqllib/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  # not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  # not_if { File.exist?("#{node['wgisrv']['ng_home']}/sqllib/db2profile") }
   action :run
 end
 

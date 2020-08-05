@@ -8,7 +8,7 @@ template "#{node['wgisrv']['temp_dir']}/tcr.xml" do
 end
 
 ## stop JazzSM/Dash Server
-stop_server 'stop server tcr' do
+stop_server 'stop_server_tcr' do
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/reporting/runcgi") }
   action :run
