@@ -3,6 +3,7 @@ cd /cots/apps/install/TCRCognos/ContentStoreDatabase
 ./TCR_generate_content_store_db2_definition.sh TCRDB omni01
 db2 -vtf tcr_create_db2_cs.sql
 sudo yum -y install motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686
+db2ls # command will display the db2level along with the install path and install date.
 db2 connect to tcrdb
 db2 list node directory
 db2 list db directory
@@ -14,3 +15,4 @@ db2 list tables for schema tcrdb
 /cots/apps/JazzSM/profile/bin/startServer.sh server1
 tail -f /cots/apps/JazzSM/profile/logs/server1/SystemOut.log
 /cots/apps/InstallationManager/eclipse/tools/imcl generateResponseFile > /tmp/rsp.xml
+echo > /dev/tcp/ead/60008 && echo "Port is open"

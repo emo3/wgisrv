@@ -3,7 +3,6 @@ stop_server 'stop_soap' do
   server_cmd "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 \
   -user #{node['wgisrv']['was_act']} \
   -password #{node['wgisrv']['dash_pwd']} -quiet"
-  cmd_sensitive 'true'
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/profile/properties/soap.client.props.orig") }
   action :run

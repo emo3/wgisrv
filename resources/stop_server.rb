@@ -5,7 +5,6 @@ property :server_cmd, String, default: "#{node['wgisrv']['was_dir']}/bin/stopSer
 property :cmd_dir, String, default: "#{node['wgisrv']['was_dir']}/bin"
 property :cmd_user, String, default: node['wgisrv']['nc_act']
 property :cmd_group, String, default: node['wgisrv']['nc_grp']
-property :cmd_sensitive, String, default: 'false'
 
 action :run do
   # run the server command
@@ -14,7 +13,6 @@ action :run do
     cwd new_resource.cmd_dir
     user new_resource.cmd_user
     group new_resource.cmd_group
-    sensitive new_resource.cmd_sensitive
     action :run
   end
 end

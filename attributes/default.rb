@@ -2,6 +2,7 @@ default['wgisrv'].tap do |wgs|
   wgs['app_dir']   = '/apps'
   wgs['ng_dir']    = "#{node['wgisrv']['app_dir']}/webgui"
   wgs['ng_home']   = '/home/webgui'
+  wgs['nc_home']   = '/home/netcool'
   wgs['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
   wgs['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
   wgs['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
