@@ -1,7 +1,7 @@
 # Add ncw_admin ... role(s) to {netcool, smadmin}
 echo "Add role(s) to {netcool}"
 <%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh MapRolesToUser \
---userID netcool \
+--userID <%= node['wgisrv']['nc_act'] %> \
 --rolesList \
 administrator,chartAdministrator,iscadmins,ncw_admin,\
 ncw_user,ncw_dashboard_editor,ncw_gauges_editor,\
@@ -10,9 +10,9 @@ netcool_rw,tcrPortalOperator
 # Add to ncw_admin role {smadmin}
 echo "Add role(s) to {smadmin}"
 <%= node['wgisrv']['jaz_dir'] %>/ui/bin/consolecli.sh MapRolesToUser \
---username smadmin \
---password ${SPW} \
---userID smadmin \
+--username <%= node['wgisrv']['was_act'] %> \
+--password <%= node['wgisrv']['dash_pwd'] %> \
+--userID <%= node['wgisrv']['was_act'] %> \
 --rolesList \
 ncw_admin,ncw_user,ncw_dashboard_editor,ncw_gauges_editor,\
 netcool_rw,tcrPortalOperator

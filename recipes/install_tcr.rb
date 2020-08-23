@@ -9,6 +9,9 @@ end
 
 ## stop JazzSM/Dash Server
 stop_server 'stop_server_tcr' do
+  server_cmd "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 \
+  -user #{node['wgisrv']['was_act']} \
+  -password #{node['wgisrv']['dash_pwd']} -quiet"
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['jaz_dir']}/reporting/runcgi") }
   action :run
