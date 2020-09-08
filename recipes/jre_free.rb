@@ -5,7 +5,7 @@ template '/etc/profile.d/java.sh' do
 end
 
 # make a backup copy
-copy_file 'copy server' do
+copy_file 'copy_server_jre' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init"
   file_ext '.bak'
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
@@ -22,13 +22,16 @@ template "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init" do
 end
 
 ## restart JazzSM/Dash Server
-stop_server 'stop server jre free' do
+stop_server 'stop_server_jre_free' do
+  server_cmd "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 \
+  -user #{node['wgisrv']['was_act']} \
+  -password #{node['wgisrv']['dash_pwd']} -quiet"
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init.orig") }
   action :run
 end
 # start wg
-execute 'start_wg_jre' do
+execute 'start_wg_jre_free' do
   command "#{node['wgisrv']['was_dir']}/bin/startServer.sh server1 -quiet"
   cwd "#{node['wgisrv']['was_dir']}/bin"
   user node['wgisrv']['nc_act']
@@ -39,7 +42,7 @@ execute 'start_wg_jre' do
 end
 
 # rename file
-copy_file 'rename server' do
+copy_file 'rename_server_jre_free' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/etc/server.init"
   file_ext '.bak'
   file_ext1 '.orig'

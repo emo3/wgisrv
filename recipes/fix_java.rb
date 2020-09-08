@@ -1,5 +1,5 @@
 # make backup copy of sdk
-copy_file 'copy java' do
+copy_file 'copy_java' do
   old_file "#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties"
   file_ext '.bak'
   not_if { File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
@@ -42,7 +42,7 @@ execute 'uninstall_java_1-7' do
   action :run
 end
 
-copy_file 'rename java' do
+copy_file 'rename_java' do
   old_file "#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties"
   file_ext '.bak'
   file_ext1 '.orig'

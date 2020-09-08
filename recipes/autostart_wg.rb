@@ -5,7 +5,7 @@ template '/etc/init.d/ncg' do
 end
 
 # stop JazzSM/Dash Server
-stop_server 'stop server auto' do
+stop_server 'stop_server_auto' do
   only_if { File.exist?(node['wgisrv']['jaz_pid']) }
   action :run
 end
