@@ -1,4 +1,4 @@
-resource_name :copy_file
+provides :copy_file
 
 property :old_file, String, default: ''
 property :file_ext, String, default: '.bak'
