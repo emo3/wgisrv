@@ -29,7 +29,7 @@ verifier:
   name: inspec
 
 platforms:
-  - name: mycentos7
+  - name: cent7
     provisioner:
       download_url: http://10.1.1.30/media/chef-<%= ENV['chef_release'] %>-1.el7.x86_64.rpm
 
