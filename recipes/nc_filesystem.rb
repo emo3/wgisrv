@@ -8,6 +8,8 @@ directory node['wgisrv']['app_dir'] do
   action :create
 end
 
+package 'lvm2'
+
 create_xfs 'create netcool wg extra file system' do
   lv_size   node['wgisrv']['lv_size']
   lv_name   node['wgisrv']['lv_name']
