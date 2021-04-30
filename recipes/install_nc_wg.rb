@@ -4,6 +4,14 @@ package node['wgisrv']['packages']
 # create silent install file for WebGUI packages
 template "#{node['wgisrv']['temp_dir']}/wg.xml" do
   source 'wg.xml.erb'
+  variables(
+    was85v:   node['wgisrv']['filelist']['jsmfp']['version'],
+    wasbasev: node['wgisrv']['filelist']['wasfp1']['version'],
+    java7v:   node['wgisrv']['filelist']['was4j']['version'],
+    java8v:   node['wgisrv']['filelist']['java8']['version'],
+    j4smv:    node['wgisrv']['filelist']['jsmfp']['xversion'],
+    webguiv:  node['wgisrv']['filelist']['wgfp']['version'],
+  )
   not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/runcgi") }
   ## must be set because of clear text passwords
   sensitive true
