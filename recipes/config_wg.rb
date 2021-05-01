@@ -20,7 +20,7 @@ end
 copy_file 'copy WebGUI' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties"
   file_ext '.bak'
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
   action :copy
 end
 
@@ -30,7 +30,7 @@ template "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.propertie
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   sensitive true
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
 end
 
 # Configure files
@@ -39,7 +39,7 @@ execute 'config_wg' do
   cwd "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
   action :run
 end
 
@@ -48,6 +48,6 @@ copy_file 'rename WebGUI' do
   old_file "#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties"
   file_ext '.bak'
   file_ext1 '.orig'
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/OMNIbusWebGUI.properties.orig") }
   action :move
 end

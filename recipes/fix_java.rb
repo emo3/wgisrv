@@ -2,7 +2,7 @@
 copy_file 'copy_java' do
   old_file "#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties"
   file_ext '.bak'
-  not_if { File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
   action :copy
 end
 
@@ -14,7 +14,7 @@ execute 'set Command Default' do
   cwd "#{node['wgisrv']['was_dir']}/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
   action :run
 end
 
@@ -25,7 +25,7 @@ execute 'set New Profile Default' do
   cwd "#{node['wgisrv']['was_dir']}/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
   action :run
 end
 
@@ -38,7 +38,7 @@ execute 'uninstall_java_1-7' do
   cwd "#{node['wgisrv']['was_dir']}/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
+  not_if { ::File.exist?("#{node['wgisrv']['was_dir']}/properties/sdk/newProfileDefaultSDK.properties.orig") }
   action :run
 end
 

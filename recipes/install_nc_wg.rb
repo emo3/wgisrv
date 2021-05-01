@@ -11,12 +11,12 @@ template "#{node['wgisrv']['temp_dir']}/wg.xml" do
     java8v:   node['wgisrv']['filelist']['java8']['version'],
     j4smv:    node['wgisrv']['filelist']['jsmfp']['version'],
     webguiv:  node['wgisrv']['filelist']['wgfp']['version'],
-    reportv:  node['wgisrv']['filelist']['tcr']['version'],
+    reportv:  node['wgisrv']['filelist']['tcr']['version']
   )
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/runcgi") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/runcgi") }
   ## must be set because of clear text passwords
   sensitive true
-  mode 0444
+  mode '0444'
 end
 
 # Install webgui
@@ -26,7 +26,7 @@ execute 'install_wg' do
   -log #{node['wgisrv']['temp_dir']}/wg_log.xml \
   -acceptlicense"
   cwd "#{node['wgisrv']['app_dir']}/InstallationManager/eclipse/tools"
-  not_if { File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/runcgi") }
+  not_if { ::File.exist?("#{node['wgisrv']['ng_dir']}/omnibus_webgui/bin/runcgi") }
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
   umask '022'
@@ -36,7 +36,7 @@ end
 # create shell variable for WebGUI
 template '/etc/profile.d/webgui.sh' do
   source 'webgui.sh.erb'
-  mode 0755
+  mode '0755'
 end
 
 # remove silent install file

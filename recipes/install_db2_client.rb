@@ -10,7 +10,7 @@ template "#{node['wgisrv']['temp_dir']}/db2client_nr.rsp" do
     instance: node['wgisrv']['instance'],
     owner: node['wgisrv']['nc_act']
   )
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  not_if { ::File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
 end
 
 # install DB2 client
@@ -21,7 +21,7 @@ execute 'install_db2_client' do
   cwd "#{node['wgisrv']['in_dir']}/db2c/client"
   user 'root'
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  not_if { ::File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
   action :run
 end
 
@@ -58,7 +58,7 @@ execute 'db2_catalog' do
   cwd "#{node['wgisrv']['nc_home']}/sqllib/bin"
   user node['wgisrv']['nc_act']
   group node['wgisrv']['nc_grp']
-  not_if { File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
+  not_if { ::File.exist?("#{node['wgisrv']['nc_home']}/sqllib/db2profile") }
   action :run
 end
 
