@@ -8,6 +8,8 @@ default['wgisrv'].tap do |wgs|
   wgs['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
   wgs['jaz_dir']   = "#{node['wgisrv']['app_dir']}/JazzSM"
   wgs['jaz_pid']   = "#{node['wgisrv']['jaz_dir']}/profile/logs/server1/server1.pid"
+  wgs['cog_loc']   = "#{node['wgisrv']['in_dir']}/TCRCognos"
+  wgs['rpt_bak']   = "#{node['wgisrv']['jaz_dir']}/rpt_bak"
   wgs['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686)
   wgs['temp_dir']  = '/tmp'
   wgs['media_url'] = 'http://10.1.1.30/media'
