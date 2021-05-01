@@ -2,4 +2,3 @@
 AllCops:
   Exclude:
     - 'Dangerfile'
-    - 'Berksfile'
