@@ -1,15 +1,4 @@
+---
 AllCops:
-  Include:
-    - Berksfile
-    - Gemfile
-    - Rakefile
-    - Thorfile
-    - Guardfile
   Exclude:
-    - vendor/**/*
-
-Style/Documentation:
-  Enabled: false
-
-Style/GlobalVars:
-  AllowedVariables: [$access_token]
+    - 'Dangerfile'
