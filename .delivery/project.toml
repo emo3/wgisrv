@@ -1,9 +1,0 @@
-[local_phases]
-unit = "chef exec rspec spec/"
-lint = "chef exec cookstyle --display-cop-names --extra-details"
-syntax = "echo syntax checking with foodcritic has been replaced with cookstyle. skipping"
-provision = "echo skipping"
-deploy = "echo skipping"
-smoke = "echo skipping"
-functional = "echo skipping"
-cleanup = "echo skipping"

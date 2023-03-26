@@ -1,4 +1,5 @@
 provides :copy_file
+unified_mode true
 
 property :old_file, String, default: ''
 property :file_ext, String, default: '.bak'

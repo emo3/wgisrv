@@ -78,7 +78,6 @@ node['wgisrv']['filelist'].each do |_fn, fv|
   # Download file
   remote_file "#{fv['ipath']}/#{fv['fname']}" do
     source "#{node['wgisrv']['media_url']}/#{fv['fname']}"
-    not_if { ::File.exist?("#{fv['ipath']}/#{fv['fname']}") }
     not_if { ::File.exist?("#{fv['ipath']}/#{fv['ifile']}") }
     user node['wgisrv']['nc_act']
     group node['wgisrv']['nc_grp']
@@ -86,18 +85,14 @@ node['wgisrv']['filelist'].each do |_fn, fv|
     action :create
   end
   # un package file
-  execute "un_package_#{fv['fname']}" do
-    command "unzip -q #{fv['ipath']}/#{fv['fname']}" if File.extname("#{fv['ipath']}/#{fv['fname']}") == '.zip'
-    command "tar -xf #{fv['ipath']}/#{fv['fname']}" if File.extname("#{fv['ipath']}/#{fv['fname']}") == '.tar'
-    command "tar -zxf #{fv['ipath']}/#{fv['fname']}" if File.extname("#{fv['ipath']}/#{fv['fname']}") == '.gz'
-    cwd fv['ipath']
-    not_if { ::File.exist?("#{fv['ipath']}/#{fv['ifile']}") }
-    not_if { fv['upack'] == 'n' }
-    user node['wgisrv']['nc_act']
+  archive_file "un_package_#{fv['fname']}" do
+    path "#{fv['ipath']}/#{fv['fname']}"
+    destination fv['ipath']
+    owner node['wgisrv']['nc_act']
     group node['wgisrv']['nc_grp']
-    umask '022'
-    action :run
+    mode '0644'
   end
+
   # remove package file
   file "#{fv['ipath']}/#{fv['fname']}" do
     not_if { fv['upack'] == 'n' }

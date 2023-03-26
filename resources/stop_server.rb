@@ -1,5 +1,6 @@
 # you MUST enable SOAP to use stop_server function
 provides :stop_server
+unified_mode true
 
 property :server_cmd, String, default: "#{node['wgisrv']['was_dir']}/bin/stopServer.sh server1 -quiet"
 property :cmd_dir, String, default: "#{node['wgisrv']['was_dir']}/bin"
