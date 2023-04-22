@@ -24,14 +24,14 @@ provisioner:
   product_name: chef
   product_version: <%= ENV['chef_release'] %>
   install_strategy: once
+  deprecations_as_errors: false
+  chef_license: accept-no-persist
 
 verifier:
   name: inspec
 
 platforms:
-  - name: cent7
-    # provisioner:
-    #   download_url: http://10.1.1.30/media/chef-<%= ENV['chef_release'] %>-1.el7.x86_64.rpm
+  - name: centos-7
 
 suites:
   - name: wgisrv

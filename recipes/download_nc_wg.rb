@@ -1,12 +1,3 @@
-# copy cp?
-# copy wg 8.1.4
-# copy wgfp 8.1.??
-# copy jazz4sm 1.1.3.0
-# copy jazzsm fp?
-# copy wasfp 8.5.5.??
-# copy java 8
-# copy db2 client
-# copy tcr
 node.default['wgisrv']['filelist'] = {
   'wg' => { 'ipath' => "#{node['wgisrv']['in_dir']}/wg",
    'fname' => 'OMNIbus-v8.1.0.4-WebGUI.linux64.zip',
@@ -55,16 +46,30 @@ node.default['wgisrv']['filelist'] = {
    'fname' => 'v10.5fp9_linuxx64_client.tar.gz',
    'ifile' => 'client/db2_install',
    'upack' => 'y' },
-  'tcr' => { 'ipath' => node['wgisrv']['in_dir'],
+  'tcr' => { 'ipath' => "#{node['wgisrv']['in_dir']}/tcr",
    'fname' => 'ITCR_3.1.3.0_FOR_LINUX.tar.gz',
    'ifile' => 'TCRCognos/build.txt',
-   'version' => '3.1.3000.20200214-0518',
+   'version' => '3.1.3100.20200214-0518',
    'upack' => 'y' },
   'nc' => { 'ipath' => node['wgisrv']['in_dir'],
    'fname' => 'Netcool_OMNIbus_updated.zip',
    'ifile' => 'Netcool_OMNIbus_updated.zip',
    'upack' => 'n' },
 }
+
+# add needed TCR  package(s)
+package node['wgisrv']['packages']
+package node['wgisrv']['packages1']
+# package node['wgisrv']['packages2']
+
+# Create media directory
+directory node['wgisrv']['media_dir'] do
+  recursive true
+  user node['wgisrv']['nc_act']
+  group node['wgisrv']['nc_grp']
+  mode '0755'
+  action :create
+end
 
 node['wgisrv']['filelist'].each do |_fn, fv|
   # Create install directory
@@ -76,26 +81,21 @@ node['wgisrv']['filelist'].each do |_fn, fv|
     action :create
   end
   # Download file
-  remote_file "#{fv['ipath']}/#{fv['fname']}" do
+  remote_file "#{node['wgisrv']['media_dir']}/#{fv['fname']}" do
     source "#{node['wgisrv']['media_url']}/#{fv['fname']}"
-    not_if { ::File.exist?("#{fv['ipath']}/#{fv['ifile']}") }
     user node['wgisrv']['nc_act']
     group node['wgisrv']['nc_grp']
     mode '0755'
     action :create
   end
-  # un package file
-  archive_file "un_package_#{fv['fname']}" do
-    path "#{fv['ipath']}/#{fv['fname']}"
-    destination fv['ipath']
+  # unpackage file
+  archive_file fv['fname'] do
     owner node['wgisrv']['nc_act']
     group node['wgisrv']['nc_grp']
-    mode '0644'
-  end
-
-  # remove package file
-  file "#{fv['ipath']}/#{fv['fname']}" do
+    path "#{node['wgisrv']['media_dir']}/#{fv['fname']}"
+    destination fv['ipath']
+    overwrite :auto
+    action :extract
     not_if { fv['upack'] == 'n' }
-    action :delete
   end
 end

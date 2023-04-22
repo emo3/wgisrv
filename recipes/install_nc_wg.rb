@@ -1,6 +1,3 @@
-# add needed TCR  package(s)
-package node['wgisrv']['packages']
-
 # create silent install file for WebGUI packages
 template "#{node['wgisrv']['temp_dir']}/wg.xml" do
   source 'wg.xml.erb'
