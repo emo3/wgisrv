@@ -4,13 +4,16 @@ default['wgisrv'].tap do |wgs|
   wgs['ng_home']   = '/home/webgui'
   wgs['nc_home']   = '/home/netcool'
   wgs['in_dir']    = "#{node['wgisrv']['app_dir']}/install"
+  wgs['media_dir'] = "#{node['wgisrv']['app_dir']}/media"
   wgs['shr_dir']   = "#{node['wgisrv']['app_dir']}/IMShared"
   wgs['was_dir']   = "#{node['wgisrv']['app_dir']}/WebSphere/AppServer"
   wgs['jaz_dir']   = "#{node['wgisrv']['app_dir']}/JazzSM"
   wgs['jaz_pid']   = "#{node['wgisrv']['jaz_dir']}/profile/logs/server1/server1.pid"
   wgs['cog_loc']   = "#{node['wgisrv']['in_dir']}/TCRCognos"
   wgs['rpt_bak']   = "#{node['wgisrv']['jaz_dir']}/rpt_bak"
-  wgs['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i686 nss.i686)
+  wgs['packages']  = %w(motif.i686 compat-glibc libpng12.i686 nspr.i686)
+  wgs['packages1'] = %w(nss)
+  wgs['packages2'] = %w(nss.i686)
   wgs['temp_dir']  = '/tmp'
   wgs['media_url'] = 'http://10.1.1.30/media'
   wgs['lv_name']   = 'lvnc'
